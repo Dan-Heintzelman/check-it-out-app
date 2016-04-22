@@ -1,0 +1,9 @@
+language: ruby
+rbenv:
+  -2.2.4
+
+env:
+  - DB=postgresql
+
+gemfile:
+  - Gemfile
