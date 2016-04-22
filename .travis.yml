@@ -1,0 +1,16 @@
+language: ruby
+rbenv: "-2.2.4"
+env:
+- DB=postgresql
+gemfile:
+- Gemfile
+matrix:
+  exclude:
+    rbenv: "-1.9.3"
+deploy:
+  provider: heroku
+  api_key:
+    secure: xglcK7jekTwr3KkNxBDR+kVd7hRoP2dZZ1LATGeJ/61AFWOj469vzQK4jc9t+xMPbi5RVOKE95eqia4G7tFMrn3Wew4PSIwyv9PIi9NQiayVCqcseN4/d/RwRJ9aaSxPi5t+IuCnCPJI/G9ury0hlLYQ3lYBTtZS9sfwNtiieIcVvD316iGkhCjMl5XRJNNLEQ7h6f9yRlIGIrs5hvNHysD7S8ASiU4+ZlngriExbPiIxbguE3OAnck5llY2IyYQfP9DytSEw+TTeZkLQZPMYYcI9shUHDR8BJgFgoKSpAVH3Wi3Nphm4PIHmwIjKjW9q92s/PGAk62kD3U0pn7F15nwHseFSvinS3g1ceRBVIey7bhuouMWjpGwBaM2yWvTmsVYlmdl+F3/0PwhOVgDIiUHTtZVvr/fQpLPl+s78OET0fFuR5rAowtjApdHCsAt41RR6feaR1IBWGm10JTN2uEKX9Ki8LPJoiSmCwIIPTSXibraxntb2PrjGcvd+1CSOKJ1egl9SxS98IuJkWSeAuKMOhWsF26zhP9jrcXcdb9ngqqquUYoa5r3g+vKfwVvMHM0dA2157Gdjv4saCDi+HPN+uf6ukF4rWRVkiXuN95x1MnvB+i7D1fz5Sin0DFZpSjidJ08lQnM7SJpwBBhUvlaRkoqcxBR/P9//TVpUH0=
+  app: slice-it-app
+  on:
+    repo: Heintzdm/check-it-out-app
