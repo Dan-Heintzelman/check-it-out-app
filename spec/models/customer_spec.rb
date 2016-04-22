@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let :user = Customer.new(first_name: "Zach", last_name: "Barton", email: "Zach@Barton.com", password: "password", username: "zbarton", financial_info: "AMEX")
+
 end
