@@ -851,3 +851,188 @@ ORDER BY c.conname
   [1m[35mCustomer Load (0.4ms)[0m  SELECT "customers".* FROM "customers" INNER JOIN "transactions" ON "customers"."id" = "transactions"."customer_id" WHERE "transactions"."bill_id" = $1  [["bill_id", 1]]
   [1m[36mTransaction Load (0.3ms)[0m  [1mSELECT "transactions".* FROM "transactions" WHERE "transactions"."bill_id" = $1[0m  [["bill_id", 1]]
   [1m[35mCustomer Load (0.5ms)[0m  SELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (3.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (30.2ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCustomers (20160422183615)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (37.2ms)[0m  [1mCREATE TABLE "customers" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "password_digest" character varying, "username" character varying, "financial_info" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183615"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSeatings (20160422183836)
+  [1m[35m (15.4ms)[0m  BEGIN
+  [1m[36m (16.8ms)[0m  [1mCREATE TABLE "seatings" ("id" serial primary key, "customer_id" integer, "merchant_id" integer, "assigned" boolean, "bill_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183836"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMerchants (20160422183844)
+  [1m[35m (15.6ms)[0m  BEGIN
+  [1m[36m (20.6ms)[0m  [1mCREATE TABLE "merchants" ("id" serial primary key, "business_name" character varying, "username" character varying, "password_digest" character varying, "financial_info" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183844"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateItems (20160422183850)
+  [1m[35m (30.7ms)[0m  BEGIN
+  [1m[36m (4.0ms)[0m  [1mCREATE TABLE "items" ("id" serial primary key, "merchant_id" integer, "item_description" character varying, "price" decimal(8,2), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183850"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTransactions (20160422183859)
+  [1m[35m (15.7ms)[0m  BEGIN
+  [1m[36m (18.8ms)[0m  [1mCREATE TABLE "transactions" ("id" serial primary key, "bill_id" integer, "customer_id" integer, "amount" decimal(8,2), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183859"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateBills (20160422183903)
+  [1m[35m (15.8ms)[0m  BEGIN
+  [1m[36m (17.4ms)[0m  [1mCREATE TABLE "bills" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183903"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOrders (20160422183906)
+  [1m[35m (15.6ms)[0m  BEGIN
+  [1m[36m (17.7ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "item_id" integer, "bill_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160422183906"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'bills'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'customers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'items'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'merchants'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'seatings'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'transactions'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mCustomer Load (0.6ms)[0m  SELECT "customers".* FROM "customers"
+  [1m[36mMerchant Load (0.6ms)[0m  [1mSELECT "merchants".* FROM "merchants"[0m
+  [1m[35mSeating Load (0.5ms)[0m  SELECT "seatings".* FROM "seatings"
+  [1m[36mItem Load (0.5ms)[0m  [1mSELECT "items".* FROM "items"[0m
+  [1m[35mBill Load (0.4ms)[0m  SELECT "bills".* FROM "bills"
+  [1m[36mOrder Load (0.6ms)[0m  [1mSELECT "orders".* FROM "orders"[0m
+  [1m[35mTransaction Load (0.4ms)[0m  SELECT "transactions".* FROM "transactions"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "customers" ("first_name", "last_name", "email", "password_digest", "username", "financial_info", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["first_name", "Mike"], ["last_name", "Yao"], ["email", "Mike@Yao.com"], ["password_digest", "$2a$10$DRslzOft1F8rtflKPo47sO740sz77NDFiBO4c.1uFRjaPfTg0/Z5y"], ["username", "myao"], ["financial_info", "Visa"], ["created_at", "2016-04-22 20:32:21.024972"], ["updated_at", "2016-04-22 20:32:21.024972"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "customers" ("first_name", "last_name", "email", "password_digest", "username", "financial_info", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["first_name", "Zach"], ["last_name", "Barton"], ["email", "Zach@Barton.com"], ["password_digest", "$2a$10$XHjGpdSjvYeiCdbAFGnXVuOuSqkxVOt4hfhZzCpB76MNkvPkiXOoS"], ["username", "zbarton"], ["financial_info", "AMEX"], ["created_at", "2016-04-22 20:32:21.100626"], ["updated_at", "2016-04-22 20:32:21.100626"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "merchants" ("business_name", "username", "password_digest", "financial_info", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["business_name", "McDonalds"], ["username", "admin"], ["password_digest", "$2a$10$OilTiYwFnec2WIKBUXBx8uOmkXs1hb3UNhy5SLbHbnpmd2zjcB5jq"], ["financial_info", "Chase Bank"], ["created_at", "2016-04-22 20:32:21.181243"], ["updated_at", "2016-04-22 20:32:21.181243"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "merchants" ("business_name", "username", "password_digest", "financial_info", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["business_name", "Hard Rock Cafe"], ["username", "admin"], ["password_digest", "$2a$10$dq4Y8cxLetybGi0CEtryF.NWo2SsjRbsocOHveabCRvj30iJgiePK"], ["financial_info", "Bank of America"], ["created_at", "2016-04-22 20:32:21.255079"], ["updated_at", "2016-04-22 20:32:21.255079"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "seatings" ("customer_id", "merchant_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["customer_id", 1], ["merchant_id", 1], ["bill_id", 1], ["created_at", "2016-04-22 20:32:21.268061"], ["updated_at", "2016-04-22 20:32:21.268061"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "seatings" ("customer_id", "merchant_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["customer_id", 2], ["merchant_id", 2], ["bill_id", 2], ["created_at", "2016-04-22 20:32:21.271500"], ["updated_at", "2016-04-22 20:32:21.271500"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "items" ("merchant_id", "item_description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["merchant_id", 1], ["item_description", "beef"], ["price", "3.5"], ["created_at", "2016-04-22 20:32:21.279286"], ["updated_at", "2016-04-22 20:32:21.279286"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("merchant_id", "item_description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["merchant_id", 1], ["item_description", "mystery meat"], ["price", "5.75"], ["created_at", "2016-04-22 20:32:21.283444"], ["updated_at", "2016-04-22 20:32:21.283444"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "items" ("merchant_id", "item_description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["merchant_id", 2], ["item_description", "nuggets"], ["price", "6.05"], ["created_at", "2016-04-22 20:32:21.286298"], ["updated_at", "2016-04-22 20:32:21.286298"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("merchant_id", "item_description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["merchant_id", 2], ["item_description", "hard rocks"], ["price", "4.0"], ["created_at", "2016-04-22 20:32:21.288714"], ["updated_at", "2016-04-22 20:32:21.288714"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bills" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2016-04-22 20:32:21.293248"], ["updated_at", "2016-04-22 20:32:21.293248"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "bills" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2016-04-22 20:32:21.295816"], ["updated_at", "2016-04-22 20:32:21.295816"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "transactions" ("bill_id", "customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["bill_id", 1], ["customer_id", 1], ["created_at", "2016-04-22 20:32:21.302853"], ["updated_at", "2016-04-22 20:32:21.302853"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "transactions" ("bill_id", "customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["bill_id", 2], ["customer_id", 2], ["created_at", "2016-04-22 20:32:21.305706"], ["updated_at", "2016-04-22 20:32:21.305706"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "orders" ("item_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["item_id", 1], ["bill_id", 1], ["created_at", "2016-04-22 20:32:21.312306"], ["updated_at", "2016-04-22 20:32:21.312306"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "orders" ("item_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["item_id", 2], ["bill_id", 1], ["created_at", "2016-04-22 20:32:21.315750"], ["updated_at", "2016-04-22 20:32:21.315750"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "orders" ("item_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["item_id", 3], ["bill_id", 2], ["created_at", "2016-04-22 20:32:21.318378"], ["updated_at", "2016-04-22 20:32:21.318378"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "orders" ("item_id", "bill_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["item_id", 4], ["bill_id", 2], ["created_at", "2016-04-22 20:32:21.320438"], ["updated_at", "2016-04-22 20:32:21.320438"]]
+  [1m[35m (0.5ms)[0m  COMMIT
