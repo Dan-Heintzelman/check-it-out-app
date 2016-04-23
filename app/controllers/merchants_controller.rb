@@ -1,4 +1,8 @@
 class MerchantsController < ApplicationController
+    def index
+      @merchants = Merchant.all
+    end
+
     def create
       @merchant = Merchant.new(merchant_params)
     end
@@ -15,14 +19,15 @@ class MerchantsController < ApplicationController
       else
         @errors = @merchant.errors
         render edit
+      end
     end
 
     def show
       @merchant = Merchant.find(params[:id])
-      respond_to do |format|
-        format.html { redirect_to @merchant }
-        format.json { render json: @merchant}
-      end
+      # respond_to do |format|
+        # redirect_to @merchant
+      #   format.json { render json: @merchant}
+      # end
     end
 
 

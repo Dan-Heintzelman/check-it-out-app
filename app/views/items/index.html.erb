@@ -1,0 +1,19 @@
+<h1>Here is your menu <%= @merchant.business_name %></h1>
+
+<table>
+  <tr>
+    <td>Item</td>
+    <td>Price</td>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.item_description %></td>
+      <td>$<%= item.price %></td>
+      <td>$<%= link_to "Edit Item", edit_merchant_item_path(item), method: :put %></td>
+      <td>$<%= link_to "Delete Item", merchant_item_path(item), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Add an Item to your Menu!", new_merchant_item_path %></p>
+
