@@ -13,6 +13,7 @@ class BillsController < ApplicationController
   end
 
   def create
+    @bill = Bill.new
   end
 
   def show
