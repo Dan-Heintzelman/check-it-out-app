@@ -1,0 +1,10 @@
+table {
+  background-color: #ddd;
+  border: 2px solid #000;
+  display: inline-block;
+}
+
+td, th {
+  padding: 4px;
+  border: 1px solid #000;
+}
