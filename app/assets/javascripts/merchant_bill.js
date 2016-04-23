@@ -1,6 +1,4 @@
 
-
-
   $(document).ready(function(){
 
     bill = new Bill();
@@ -44,7 +42,6 @@
       var index = bill.items.findIndex(x => x.name==item[0].name)
       $(menuItem).remove();
       bill.items.splice(index, 1);
-      console.log(bill.items)
       var total = bill.total();
       $("#bill_total").text("$"+total/100);
     }
@@ -56,20 +53,17 @@
    });
 
    $("#transmit_order").on("click", function(){
-    var myBill = {
-      items: []
-    };
+    var myBill = {};
 
-    for (var i = 0; i < bill.items.length; i++) {
-      var item = bill.items[i];
-      myBill.items.push({
+    for (var i = 1; i <= bill.items.length; i++) {
+      var item = bill.items[i-1];
+      myBill[i] = {
         "item" : item.name,
         "price" : item.price,
         "merchant_id" : item.merchant_id
-      });
+      };
     }
 
-    console.log(myBill)
     $.ajax({
       type: "POST",
       url: "/bills",
