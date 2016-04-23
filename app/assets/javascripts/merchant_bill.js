@@ -30,7 +30,8 @@
       $(menuItem.clone()).appendTo("#bill tbody").attr("class", "bill_item");
       var name = $(menuItem).children(".item_name").text();
       var price = $(menuItem).children(".item_price").text();
-      var newItem = new Item(name, price);
+      var merch_id = $(menuItem).children(".merch_id").text();
+      var newItem = new Item(name, price, merch_id);
       bill.addItem(newItem);
       var total = bill.total();
       $("#bill_total").text("$"+total/100);
@@ -54,4 +55,25 @@
     $("#bill_total").text("$0.00");
    });
 
+   $("#transmit_order").on("click", function(){
+    var myBill = {
+      items: []
+    };
+
+    for (var i = 0; i < bill.items.length; i++) {
+      var item = bill.items[i];
+      myBill.items.push({
+        "item" : item.name,
+        "price" : item.price,
+        "merchant_id" : item.merchant_id
+      });
+    }
+
+    console.log(myBill)
+    $.ajax({
+      type: "POST",
+      url: "/bills",
+      data: myBill
+    });
+   });
   });

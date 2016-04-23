@@ -11,6 +11,7 @@
     <tr class="line_item">
       <td class="item_name"><%= item.item_description %></td>
       <td class="item_price"><%= item.price.to_s %></td>
+      <td class="merch_id hidden"><%= item.merchant_id %></td>
     </tr>
   <% end %>
   </tbody>
