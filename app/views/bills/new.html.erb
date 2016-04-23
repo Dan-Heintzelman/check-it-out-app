@@ -27,10 +27,15 @@
   <tfoot>
     <tr>
       <td>Total Bill:</td>
-      <td id="bill_total"></td>
+      <td id="bill_total">$0.00</td>
   </tfoot>
 </table>
 
+<div id="controls">
+  <button id="clear_bill">Clear Bill</button>
+  <button id="transmit_order">Send Bill to Customer</button>
+  <button id="close_order">Close Out Bill</button>
+</div>
 <script>
   $(document).ready(function(){
 
@@ -53,8 +58,14 @@
       var newItem = new Item(name, price);
       bill.addItem(newItem);
       var total = bill.total();
-      $("#bill_total").text(total);
+      $("#bill_total").text("$"+total/100);
     }
+
+   $("#clear_bill").on("click", function(){
+    bill.clear();
+    $("#bill tbody").empty();
+    $("#bill_total").text("$0.00");
+   });
 
   });
 </script>
