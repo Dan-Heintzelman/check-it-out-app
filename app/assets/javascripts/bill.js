@@ -14,3 +14,7 @@ Bill.prototype.total = function(){
   }
   return total;
 };
+
+Bill.prototype.clear = function(){
+  this.items.length = 0;
+}

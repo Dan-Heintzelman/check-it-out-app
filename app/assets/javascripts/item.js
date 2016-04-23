@@ -1,6 +1,7 @@
-function Item(name, price){
+function Item(name, price, merchant_id){
   this.name = name
   this.price = price
+  this.merchant_id = merchant_id
 }
 
 Item.prototype.convert_price = function(){
