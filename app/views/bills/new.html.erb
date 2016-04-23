@@ -1,0 +1,17 @@
+<h2>Create New Bill</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Menu Item</th><th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @merchant.items.each do |item| %>
+    <tr class="line_item">
+      <td class="item_name"><%= item.item_description %></td>
+      <td class="item_price"><%= item.price.to_s %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
