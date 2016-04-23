@@ -1,0 +1,9 @@
+<h1>Here are the closest resturaunts that use Slice-it!</h1>
+
+<table>
+  <% @merchants.each do |merchant| %>
+    <tr>
+      <td><%= link_to merchant.business_name, merchant_path(merchant) %></td>
+    </tr>
+  <% end %>
+</table>

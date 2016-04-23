@@ -1,3 +1,15 @@
 <h1><%= @merchant.business_name %></h1>
 
-<p><%= link_to merchant_items_path %>
+<p>See Your Menu<p>
+<p><%= link_to "Menu", merchant_items_path(@merchant) %><p>
+
+<h2>Your info</h2>
+<table>
+  <tr>
+    <td><%= @merchant.username %></td>
+  </tr>
+  <tr>
+    <td><%= @merchant.financial_info %></td>
+  </tr>
+</table>
+
