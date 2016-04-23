@@ -28,6 +28,6 @@ class SessionController < ApplicationController
   end
 
   def log_out
-    session.delete
+    session.delete(:user_id)
   end
 end

@@ -1055,3 +1055,5 @@ Completed 200 OK in 245ms (Views: 235.9ms | ActiveRecord: 0.0ms)
   [1m[36mItem Load (0.5ms)[0m  [1mSELECT "items".* FROM "items" INNER JOIN "orders" ON "items"."id" = "orders"."item_id" WHERE "orders"."bill_id" = $1[0m  [["bill_id", 1]]
   [1m[36mBill Load (0.6ms)[0m  [1mSELECT  "bills".* FROM "bills"  ORDER BY "bills"."id" ASC LIMIT 1[0m
   [1m[35mItem Load (0.7ms)[0m  SELECT "items".* FROM "items" INNER JOIN "orders" ON "items"."id" = "orders"."item_id" WHERE "orders"."bill_id" = $1  [["bill_id", 1]]
+  [1m[36mBill Load (0.5ms)[0m  [1mSELECT  "bills".* FROM "bills" WHERE "bills"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mItem Load (0.6ms)[0m  SELECT "items".* FROM "items" INNER JOIN "orders" ON "items"."id" = "orders"."item_id" WHERE "orders"."bill_id" = $1  [["bill_id", 2]]
