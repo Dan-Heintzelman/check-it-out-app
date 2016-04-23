@@ -23,7 +23,7 @@ item3 = Item.create(merchant: hardrock, item_description: "nuggets", price: 6.05
 item4 = Item.create(merchant: hardrock, item_description: "hard rocks", price: 4.00)
 
 10.times do
-  Item.create(merchant_id: 1, item_description: Faker::Commerce.product_name, price: Faker::Commerce.price)
+  Item.create(merchant_id: Merchant.first.id, item_description: Faker::Commerce.product_name, price: Faker::Commerce.price)
 end
 
 2.times do
