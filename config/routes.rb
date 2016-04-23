@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'session#index'
 
-  resources :merchant do
+  resources :merchants do
     resources :items
   end
 
