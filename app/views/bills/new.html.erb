@@ -36,36 +36,4 @@
   <button id="transmit_order">Send Bill to Customer</button>
   <button id="close_order">Close Out Bill</button>
 </div>
-<script>
-  $(document).ready(function(){
 
-    bill = new Bill();
-
-    $(".line_item").draggable({
-      helper: "clone"
-    });
-
-    $("#bill").droppable({
-      accept: ".line_item",
-      drop: handleDropEvent
-    });
-
-    function handleDropEvent(event, ui){
-      var menuItem = ui.draggable
-      $(menuItem.clone(true)).appendTo("#bill tbody");
-      var name = $(menuItem).children(".item_name").text();
-      var price = $(menuItem).children(".item_price").text();
-      var newItem = new Item(name, price);
-      bill.addItem(newItem);
-      var total = bill.total();
-      $("#bill_total").text("$"+total/100);
-    }
-
-   $("#clear_bill").on("click", function(){
-    bill.clear();
-    $("#bill tbody").empty();
-    $("#bill_total").text("$0.00");
-   });
-
-  });
-</script>
