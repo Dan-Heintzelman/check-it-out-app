@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
-  root 'sessions#index'
 
   resources :merchants do
     resources :items
   end
 
-  resources :sessions, only: [:index, :new, :create]
-    delete 'logout' => 'sessions#destroy'
+  get 'index' => 'sessions#index'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  root 'sessions#index'
 
   resources :customers
   resources :bills, except: [:destroy]

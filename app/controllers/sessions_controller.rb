@@ -5,16 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def new
-
   end
 
-  def create(user)
-    @user = user.class.find_by(email: params[:session][:email])
-    if @user && @user.authenticate(params[:session][:password])
-      log_in @user
-      redirect_to root_path
-    else
-      @errors = ["Invalid Credentials"]
+  def create
+    responds_to do |format|
+      format.xml {
+        @merchant = Merchant.find_by(username: params[:session][:username])
+        if @merchant && @merchant.authenticate(params[:session][:password])
+          log_in @merchant
+          redirect_to @merchant
+        else
+          @errors = ["Invalid Credentials"]
+          render new
+        end
+      }
     end
   end
 
