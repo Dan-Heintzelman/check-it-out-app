@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   def create
     respond_to do |format|
       format.html {
+        puts "I am an html response"
         @merchant = Merchant.find_by(username: params[:session][:username])
         if @merchant && @merchant.authenticate(params[:session][:password])
           log_in_merchant(@merchant)
