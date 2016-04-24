@@ -1,7 +1,8 @@
-class CustomerController < ApplicationController
+class CustomersController < ApplicationController
 
   def index
     @customers = Customer.all
+
   end
 
   def new
@@ -16,6 +17,7 @@ class CustomerController < ApplicationController
     else
       @errors = @customer.errors.full_messages
       render :new
+    end
   end
 
   def show

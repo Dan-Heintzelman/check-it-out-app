@@ -30,8 +30,15 @@ class MerchantsController < ApplicationController
       end
     end
 
+
+
     def show
       @merchant = Merchant.find(params[:id])
+      respond_to do |format|
+        format.json { render json: @merchant}
+        format.html { redirect_to @merchant}
+      end
+
     end
 
 
