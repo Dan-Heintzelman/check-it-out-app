@@ -70,7 +70,14 @@
       type: "POST",
       url: "/bills",
       data: myBill,
-      dataType: "json"
+      dataType: "json",
+      success: function(data) {
+        console.log(data)
+        if (data.location) {
+          window.location.href = data.location;
+        }
+      }
     });
+
    });
   });
