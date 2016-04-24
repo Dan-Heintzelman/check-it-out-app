@@ -41,6 +41,7 @@ class SessionsController < ApplicationController
         log_out_customer
         dredirect_to root_url
       }
+    end
   end
 
   def log_in_merchant(merchant)
