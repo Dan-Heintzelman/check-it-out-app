@@ -20,7 +20,6 @@ class BillsController < ApplicationController
       @bill.items << new_item
     end
     if request.xhr?
-      puts "HI THERE"
       render :json => {:location => merchant_seatings_path(@merchant)}
     else
       redirect_to merchant_seatings_path(@merchant)

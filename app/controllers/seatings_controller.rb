@@ -12,8 +12,7 @@ class SeatingsController < ApplicationController
   def create
     @seating = Seating.new
     if @seating.save
-      @bill = Bill.new
-      @seating.bill_id = @bill.id
+      puts "NEW SEAT"
     else
       #your shit failed
     end
