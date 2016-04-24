@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :bills, except: [:destroy] do
     resources :transactions, only: [:create, :show, :update]
+    resources :orders, only: [:destroy]
   end
 
 

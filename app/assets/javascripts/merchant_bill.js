@@ -1,7 +1,8 @@
 
   $(document).ready(function(){
 
-    bill = new Bill();
+    bill = new Bill(); //fix the initial total when editing bill
+    var billID = $(".bill_id").text()
 
     $(".line_item").draggable({
       helper: "clone"
@@ -41,6 +42,7 @@
       var itemName = (menuItem.children().first().text())
       var item = $.grep(bill.items, function(e){return e.name === itemName})
       var index = bill.items.findIndex(x => x.name==item[0].name)
+      //ajax request to the delete function (order-destroy nested under bills)
       $(menuItem).remove();
       bill.items.splice(index, 1);
       var total = bill.total();
@@ -55,7 +57,7 @@
 
    $("#transmit_order").on("click", function(){
     var myBill = {};
-
+    var url = '/bills/' + billID
     for (var i = 0; i < bill.items.length; i++) {
       var item = bill.items[i];
       myBill[i] = {
@@ -67,8 +69,8 @@
     }
 
     $.ajax({
-      type: "POST",
-      url: "/bills",
+      type: "PUT",
+      url: url,
       data: myBill,
       dataType: "json",
       success: function(data) {

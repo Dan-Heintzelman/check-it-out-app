@@ -5,11 +5,9 @@
 
   <%= "#{seating.customer.first_name} #{seating.customer.last_name}" %>
   <ul>
-    <li><%= link_to 'Create New Bill', new_bill_path(seating: seating.id) %></li>
-      <% if seating.bill_id %>
-        <li><%= link_to 'Edit Bill', edit_bill_path(seating.bill_id) %></li>
-        <li><%= link_to 'View Bill', bill_path(seating.bill_id) %></li>
-      <% end %>
+    <li><%= link_to 'Edit Bill', edit_bill_path(seating.bill_id) %></li>
+    <li><%= link_to 'View Bill', bill_path(seating.bill_id) %></li>
+  </ul>
 <% end %>
 
 
