@@ -5,7 +5,7 @@ class BillsController < ApplicationController
   end
 
   def new
-    @bill = Bill.new()
+    @bill = Bill.new
     @merchant = Merchant.find(session[:merchant_id])
     @seating = Seating.find(params[:seating])
   end
