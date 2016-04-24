@@ -10,11 +10,15 @@ class SeatingsController < ApplicationController
   end
 
   def create
-    @seating = Seating.new
+    @merchant = Merchant.find(params[:merchant_id])
+    @seating = Seating.new(customer_id: 1)
+    @merchant.seatings << @seating
+    @seating.bill = Bill.new
+    @customer = Customer.first
     if @seating.save
-      puts "NEW SEAT"
+      render :json => { location: @customer }
     else
-      #your shit failed
+      status 422
     end
   end
 
