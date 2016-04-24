@@ -6,7 +6,7 @@ db/*.sqlite3
 db/*.sqlite
 db/*.sqlite3-journal
 log/*.log
-tmp/
+tmp/*
 .sass-cache/
 .DS_store
 coverage
