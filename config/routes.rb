@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :customers
   resources :merchants do
     resources :items
     resources :seatings
