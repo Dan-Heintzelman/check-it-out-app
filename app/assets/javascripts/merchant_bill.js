@@ -29,7 +29,8 @@
       var name = $(menuItem).children(".item_name").text();
       var price = $(menuItem).children(".item_price").text();
       var merch_id = $(menuItem).children(".merch_id").text();
-      var newItem = new Item(name, price, merch_id);
+      var item_id = $(menuItem).children(".item_id").text();
+      var newItem = new Item(name, price, merch_id, item_id);
       bill.addItem(newItem);
       var total = bill.total();
       $("#bill_total").text("$"+total/100);
@@ -58,6 +59,7 @@
     for (var i = 1; i <= bill.items.length; i++) {
       var item = bill.items[i-1];
       myBill[i] = {
+        "item_id" : item.merchant_item_id,
         "item" : item.name,
         "price" : item.price,
         "merchant_id" : item.merchant_id

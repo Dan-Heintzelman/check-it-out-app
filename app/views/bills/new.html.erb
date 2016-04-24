@@ -1,4 +1,4 @@
-<h2>Create New Bill</h2>
+<h2>Create New Bill for <%= @seating.customer.first_name %> <%= @seating.customer.last_name %>'s Table</h2>
 
 <table>
   <thead>
@@ -12,6 +12,7 @@
       <td class="item_name"><%= item.item_description %></td>
       <td class="item_price"><%= item.price.to_s %></td>
       <td class="merch_id hidden"><%= item.merchant_id %></td>
+      <td class="item_id hidden"><%= item.id %></td>
     </tr>
   <% end %>
   </tbody>
@@ -36,5 +37,6 @@
   <button id="clear_bill">Clear Bill</button>
   <button id="transmit_order">Send Bill to Customer</button>
   <button id="close_order">Close Out Bill</button>
+  <%= link_to 'Go Back to Seatings', merchant_seatings_path(@merchant) %>
 </div>
 
