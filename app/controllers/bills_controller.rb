@@ -8,7 +8,6 @@ class BillsController < ApplicationController
     #temporary merchant assignment to check bill creation
     #merchant ID should come from the session when a merchant is logged in
     @merchant = Merchant.first
-
     @bill = Bill.new
   end
 

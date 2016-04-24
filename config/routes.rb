@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :merchants do
     resources :items
+    resources :seatings
   end
 
   resources :session, only: [:index, :new, :create]
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :bills, except: [:destroy,]
 
-  resources :seatings
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
