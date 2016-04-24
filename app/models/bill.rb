@@ -15,6 +15,17 @@ class Bill < ActiveRecord::Base
     return total
   end
 
+def merchant_name
+  self.merchant.business_name if self.merchant
+end
+
+def seating_id
+  self.seating.id if self.seating
+end
+
+def paid?
+  total == transactions{ |sum, n| sum + n.amount }
+end
 
 
 
