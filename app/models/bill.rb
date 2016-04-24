@@ -10,7 +10,7 @@ class Bill < ActiveRecord::Base
   def total
     total = 0
     self.items.each do |item|
-      price = item.converted_price
+      price = item.price_to_cents
       total += price # returns total in number of cents
     end
     return total

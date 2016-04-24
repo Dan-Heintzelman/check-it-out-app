@@ -5,7 +5,7 @@ class BillsController < ApplicationController
   end
 
   def new
-    @bill = Bill.new()
+    @bill = Bill.new
     @merchant = Merchant.find(session[:merchant_id])
     @seating = Seating.find(params[:seating])
   end
@@ -13,8 +13,11 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new
     @bill.save
-    # get ITEM ID from parameter json
-    # build association between Bill ID and Item ID for orders table
+    params.except(:action, :controller).each do |param|
+      item_id = param[1]["item_id"].to_i
+      new_item = Item.find(item_id)
+      @bill.items << new_item
+    end
   end
 
   def show

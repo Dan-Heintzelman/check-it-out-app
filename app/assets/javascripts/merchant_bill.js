@@ -56,8 +56,8 @@
    $("#transmit_order").on("click", function(){
     var myBill = {};
 
-    for (var i = 1; i <= bill.items.length; i++) {
-      var item = bill.items[i-1];
+    for (var i = 0; i < bill.items.length; i++) {
+      var item = bill.items[i];
       myBill[i] = {
         "item_id" : item.merchant_item_id,
         "item" : item.name,
@@ -69,7 +69,8 @@
     $.ajax({
       type: "POST",
       url: "/bills",
-      data: myBill
+      data: myBill,
+      dataType: "json"
     });
    });
   });
