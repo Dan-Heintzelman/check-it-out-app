@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   root 'sessions#index'
 
   resources :customers
-  resources :bills, except: [:destroy]
+  resources :bills, except: [:destroy] do
+    resources :transactions, only: [:create, :show, :update]
+  end
 
 
 
