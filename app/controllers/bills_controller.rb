@@ -5,14 +5,16 @@ class BillsController < ApplicationController
   end
 
   def new
-    #temporary merchant assignment to check bill creation
-    #merchant ID should come from the session when a merchant is logged in
-    @merchant = Merchant.first
-
-    @bill = Bill.new
+    @bill = Bill.new()
+    @merchant = Merchant.find(session[:merchant_id])
+    @seating = Seating.find(params[:seating])
   end
 
   def create
+    @bill = Bill.new
+    @bill.save
+    # get ITEM ID from parameter json
+    # build association between Bill ID and Item ID for orders table
   end
 
   def show

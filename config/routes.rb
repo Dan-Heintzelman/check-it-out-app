@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
 
-  root 'session#index'
 
   resources :merchants do
     resources :items
+    resources :seatings
   end
 
-  resources :session, only: [:index, :new, :create]
-    delete 'logout' => 'session#destroy'
+  get 'index' => 'sessions#index'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  root 'sessions#index'
 
   resources :customers
-  resources :bills, except: [:destroy,]
+  resources :bills, except: [:destroy]
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

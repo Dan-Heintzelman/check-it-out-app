@@ -1,4 +1,4 @@
-<h2>Create New Bill</h2>
+<h2>Create New Bill for <%= @seating.customer.first_name %> <%= @seating.customer.last_name %>'s Table</h2>
 
 <table>
   <thead>
@@ -11,6 +11,8 @@
     <tr class="line_item">
       <td class="item_name"><%= item.item_description %></td>
       <td class="item_price"><%= item.price.to_s %></td>
+      <td class="merch_id hidden"><%= item.merchant_id %></td>
+      <td class="item_id hidden"><%= item.id %></td>
     </tr>
   <% end %>
   </tbody>
@@ -27,34 +29,14 @@
   <tfoot>
     <tr>
       <td>Total Bill:</td>
-      <td id="bill_total"></td>
+      <td id="bill_total">$0.00</td>
   </tfoot>
 </table>
 
-<script>
-  $(document).ready(function(){
+<div id="controls">
+  <button id="clear_bill">Clear Bill</button>
+  <button id="transmit_order">Send Bill to Customer</button>
+  <button id="close_order">Close Out Bill</button>
+  <%= link_to 'Go Back to Seatings', merchant_seatings_path(@merchant) %>
+</div>
 
-    bill = new Bill();
-
-    $(".line_item").draggable({
-      helper: "clone"
-    });
-
-    $("#bill").droppable({
-      accept: ".line_item",
-      drop: handleDropEvent
-    });
-
-    function handleDropEvent(event, ui){
-      var menuItem = ui.draggable
-      $(menuItem.clone(true)).appendTo("#bill tbody");
-      var name = $(menuItem).children(".item_name").text();
-      var price = $(menuItem).children(".item_price").text();
-      var newItem = new Item(name, price);
-      bill.addItem(newItem);
-      var total = bill.total();
-      $("#bill_total").text(total);
-    }
-
-  });
-</script>
