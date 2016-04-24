@@ -12,7 +12,7 @@ zach = Customer.create!(first_name: "Zach", last_name: "Barton", email: "Zach@Ba
 
 mcd = Merchant.create!(business_name: "McDonalds", username: "admin", password: "admin", financial_info: "Chase Bank")
 
-hardrock = Merchant.create!(business_name: "Hard Rock Cafe", username: "admin", password: "admin", financial_info: "Bank of America")
+hardrock = Merchant.create!(business_name: "Hard Rock Cafe", username: "hrcadmin", password: "admin", financial_info: "Bank of America")
 
 seating1 = Seating.create!(customer: mike, merchant: mcd, bill_id: 1)
 seating2 = Seating.create!(customer: zach, merchant: hardrock, bill_id: 2)

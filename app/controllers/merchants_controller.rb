@@ -36,7 +36,7 @@ class MerchantsController < ApplicationController
       @merchant = Merchant.find(params[:id])
       respond_to do |format|
         format.json { render json: @merchant}
-        format.html { redirect_to @merchant}
+        format.html {}
       end
 
     end
