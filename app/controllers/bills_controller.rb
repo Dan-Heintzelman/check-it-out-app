@@ -10,16 +10,6 @@ class BillsController < ApplicationController
     @seating = Seating.find(params[:seating])
   end
 
-  def create
-    @bill = Bill.new
-    @bill.save
-    params.except(:action, :controller).each do |param|
-      item_id = param[1]["item_id"].to_i
-      new_item = Item.find(item_id)
-      @bill.items << new_item
-    end
-  end
-
   def show
     @bill = Bill.find(params[:id])
   end
@@ -29,6 +19,19 @@ class BillsController < ApplicationController
   end
 
   def update
+    @bill = Bill.find(params[:id])
+    @bill.items = []
+    params.except(:action, :controller, :id).each do |param|
+      item_id = param[1]["item_id"].to_i
+      new_item = Item.find(item_id)
+      @bill.items << new_item
+    end
+    @bill.save
+    if request.xhr?
+      render :json => {:location => merchant_seatings_path(@bill.merchant.id)}
+    else
+      redirect_to merchant_seatings_path(@bill.merchant.id)
+    end
   end
 
 
