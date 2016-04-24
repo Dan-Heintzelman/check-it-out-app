@@ -1,7 +1,8 @@
 class SeatingsController < ApplicationController
 
   def index
-    @seatings = Seating.all
+    @seatings = Seating.where(merchant_id: params[:merchant_id])
+    puts @seatings
   end
 
   def new
