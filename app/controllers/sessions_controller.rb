@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
       }
       format.json {
         log_out_customer
-        dredirect_to root_url
+        redirect_to root_url
       }
     end
   end
