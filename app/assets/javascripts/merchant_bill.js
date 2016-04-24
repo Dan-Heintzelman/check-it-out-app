@@ -1,7 +1,24 @@
+    function billCollect(){
+      $("tr.bill_item").each(function(){
+        $this = $(this)
+        console.log($this)
+        var name = $(this).children(".item_name").text();
+        var price = $(this).children(".item_price").text();
+        var merch_id = $(this).children(".merch_id").text();
+        var item_id = $(this).children(".item_id").text();
+        var newItem = new Item(name, price, merch_id, item_id);
+        bill.addItem(newItem);
+        var total = bill.total();
+        $("#bill_total").text("$"+total/100);
+      });
+    };
 
   $(document).ready(function(){
 
     bill = new Bill(); //fix the initial total when editing bill
+
+    billCollect();
+
     var billID = $(".bill_id").text()
 
     $(".line_item").draggable({
@@ -42,7 +59,18 @@
       var itemName = (menuItem.children().first().text())
       var item = $.grep(bill.items, function(e){return e.name === itemName})
       var index = bill.items.findIndex(x => x.name==item[0].name)
+      // var dropURL = '/bills/' + billID + '/orders/' + bill.items[index].merchant_item_id
+      // console.log(dropURL)
       //ajax request to the delete function (order-destroy nested under bills)
+
+      // $.ajax({
+      //   type: "DELETE",
+      //   url: dropURL,
+      //   success: function() {
+
+      //   }
+      // });
+
       $(menuItem).remove();
       bill.items.splice(index, 1);
       var total = bill.total();

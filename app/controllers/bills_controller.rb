@@ -10,10 +10,6 @@ class BillsController < ApplicationController
     @seating = Seating.find(params[:seating])
   end
 
-  def create
-
-  end
-
   def show
     @bill = Bill.find(params[:id])
   end
@@ -24,6 +20,7 @@ class BillsController < ApplicationController
 
   def update
     @bill = Bill.find(params[:id])
+    @bill.items = []
     params.except(:action, :controller, :id).each do |param|
       item_id = param[1]["item_id"].to_i
       new_item = Item.find(item_id)
