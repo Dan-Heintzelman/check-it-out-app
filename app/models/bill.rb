@@ -2,7 +2,8 @@ class Bill < ActiveRecord::Base
   has_one :seating
   has_many :orders
   has_many :transactions
-  has_many :customers, through: :transactions
+  has_one :customer, through: :seating
+  has_many :payers, through: :transactions, source: :customer
   has_one :merchant, through: :seating
   has_many :items, through: :orders
 
