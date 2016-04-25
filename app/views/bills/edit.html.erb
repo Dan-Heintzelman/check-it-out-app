@@ -1,0 +1,50 @@
+<h2>Add or Remove Items for <%= @bill.seating.customer.first_name %> <%= @bill.seating.customer.last_name %>'s Table</h2>
+<h3>Bill ID: <span class="bill_id"><%= @bill.id %></span></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Menu Item</th><th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @bill.merchant.items.each do |item| %>
+    <tr class="line_item">
+      <td class="item_name"><%= item.item_description %></td>
+      <td class="item_price"><%= item.price.to_s %></td>
+      <td class="merch_id hidden"><%= item.merchant_id %></td>
+      <td class="item_id hidden"><%= item.id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<table id="bill">
+  <thead>
+    <tr>
+      <th>Menu Item</th><th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bill.items.each do |item| %>
+    <tr class="bill_item">
+      <td class="item_name"><%= item.item_description %></td>
+      <td class="item_price"><%= item.price %></td>
+      <td class="merch_id hidden"><%= item.merchant_id %></td>
+      <td class="item_id hidden"><%= item.id %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total Bill:</td>
+      <td id="bill_total"><%= @bill.total %></td>
+  </tfoot>
+</table>
+
+<div id="controls">
+  <button id="clear_bill">Clear Bill</button>
+  <button id="transmit_order">Send Bill to Customer</button>
+  <button id="close_order">Close Out Bill</button>
+  <button id="refresh">Undo Changes</button>
+  <%= link_to 'Go Back to Seatings', merchant_seatings_path(@bill.merchant.id) %>
+</div>
