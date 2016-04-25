@@ -1,0 +1,18 @@
+<%= form_for :item, url: merchant_items_path(@merchant), method: :post do |f| %>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :item_description %>
+  <%= f.text_field :item_description %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+
+  <%= f.submit "Add Item To Menu" %>
+<% end %>

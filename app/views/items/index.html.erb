@@ -9,7 +9,7 @@
     <tr>
       <td><%= item.item_description %></td>
       <td>$<%= item.price %></td>
-      <td><%= link_to "Edit Item", edit_merchant_item_path(@merchant, item), method: :put %></td>
+      <td><%= link_to "Edit Item", edit_merchant_item_path(@merchant, item) %></td>
       <td><%= link_to "Delete Item", merchant_item_path(@merchant, item), method: :delete %></td>
     </tr>
   <% end %>

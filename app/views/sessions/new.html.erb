@@ -1,8 +1,15 @@
 <div>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <%= form_for(:session, url: login_path) do |f| %>
 
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
 
     <%= f.label :password %>
     <%= f.password_field :password %>

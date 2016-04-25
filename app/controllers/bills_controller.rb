@@ -1,7 +1,15 @@
 class BillsController < ApplicationController
 
   def index
-    @bills = Bill.all
+    @payer = Customer.find_by(id: params[:user_id])
+    p "yo"
+    p @payer
+    @bills = []
+    Bill.all.each do |bill|
+      @bills << bill if bill.payers.include?(@payer)
+    end
+    p @bills
+    p "yo"
   end
 
   def new

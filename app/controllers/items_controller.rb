@@ -6,34 +6,43 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.new(item_params)
+    if @item.save
+      @merchant.items << @item
+      redirect_to merchant_items_path(@merchant)
+    else
+      @errors = @item.errors.full_messages
+      render 'new'
+    end
   end
 
   def edit
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
   end
 
   def update
-    @merchant = Merchant.find(params[:item][:merchant_id])
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
-      redirect_to @merchant
+      redirect_to merchant_items_path(@merchant)
     else
       @errors = @item.errors
-      render edit
+      render 'edit'
     end
   end
 
   def destroy
-    @merchant = Merchant.find(params[:item][:merchant_id])
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to @merchant
+    redirect_to merchant_items_path(@merchant)
   end
 
   private
