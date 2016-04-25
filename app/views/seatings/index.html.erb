@@ -1,7 +1,8 @@
 <h2>Here are all of the SliceIt users currently checked in at your restaurant</h2>
 
 <% @seatings.each do |seating| %>
-  <%= "#{seating.customer.first_name} #{seating.customer.last_name}" %>
+
+  <%= link_to "#{Customer.find(seating.customer_id).first_name} #{Customer.find(seating.customer_id).last_name}", merchant_seating_path(seating, @merchant) %>
   <ul>
     <li><%= link_to 'Edit Bill', edit_bill_path(seating.bill_id) %></li>
     <li><%= link_to 'View Bill', bill_path(seating.bill_id) %></li>

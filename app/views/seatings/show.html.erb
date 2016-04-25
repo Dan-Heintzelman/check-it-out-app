@@ -1,0 +1,17 @@
+<h1>This is the Seating for <%= @customer.username %></h1>
+
+<table>
+  <tr>
+    <td>See Their Bill</td>
+    <td><%= link_to "Bill", bill_path(@seating.bill) %></td>
+  </tr>
+  <tr>
+    <% if @seating.assigned? %>
+      <td><%= @customer.username %> has been seated</td>
+      <td><%= link_to "Remove Check-in", merchant_seating_path(@seating, @merchant), method: :delete %></td>
+    <% else %>
+      <td><%= @customer.username %> is still awaiting a seat</td>
+      <td><%= link_to "Assign Them", merchant_seating_path(seating_id: @seating.id, assigned: true, merchant_id: @seating.merchant_id), method: :put %>
+    <% end %>
+  </tr>
+</table>
