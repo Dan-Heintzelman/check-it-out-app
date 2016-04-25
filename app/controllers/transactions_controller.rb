@@ -2,9 +2,10 @@ class TransactionsController < ApplicationController
 
   def create
     @bill = Bill.find(params[:bill_id])
-    @transaction = Transaction.new(customer_id: 1)
-    @bill.transactions << @transaction
+    @customer = Customer.find_by(username: params[:username])
+    @transaction = Transaction.new(bill: @bill, customer: @customer)
     if @transaction.save
+      @bill.transactions << @transaction
       render json: {location: @transaction}
     else
       status 422
@@ -17,18 +18,15 @@ class TransactionsController < ApplicationController
   end
 
   def update
+    p params
     @bill = Bill.find(params[:bill_id])
-    @transaction = Transaction.find(params[:id])
-    @transaction.update(trans_params)
+    @transaction = @bill.transactions.first
+    @transaction.amount += 5.5
     if @transaction.save
-      render json: => { location: @bill }
+      render json: { location: bill_path(@bill) }
     else
       status 422
     end
   end
 
-  private
-    def trans_params
-      params.require(:transaction).permit(:bill_id, :customer_id, :amount)
-    end
 end
