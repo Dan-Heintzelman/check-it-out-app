@@ -2,9 +2,7 @@ class MerchantsController < ApplicationController
     def index
       @merchants = Merchant.all
       respond_to do |format|
-        format.html {
-          redirect_to @merchants
-        }
+        format.html { }
         format.json {
           render json: { location: merchants_path(@merchants) }
         }
