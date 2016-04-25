@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     respond_to do |format|
       format.html {
-        @merchant = Merchant.find_by(username: params[:session][:username])
+        @merchant = Merchant.find_by(email: params[:session][:email])
         if @merchant && @merchant.authenticate(params[:session][:password])
           log_in_merchant(@merchant)
           redirect_to @merchant
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         end
       }
       format.json {
-        @customer = Customer.find_by(username: params[:session][:username])
+        @customer = Customer.find_by(username: params[:session][:email])
         if @customer && @customer.authenticate(params[:session][:password])
           sign_in(:customer, @customer)
           render json: {location: customer_path(@customer)}
