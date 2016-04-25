@@ -59,18 +59,18 @@ ActiveRecord::Schema.define(version: 20160422183906) do
   create_table "seatings", force: :cascade do |t|
     t.integer  "customer_id"
     t.integer  "merchant_id"
-    t.boolean  "assigned"
+    t.boolean  "assigned",    default: false
     t.integer  "bill_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "bill_id"
     t.integer  "customer_id"
-    t.decimal  "amount",      precision: 8, scale: 2
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",      precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
 end
