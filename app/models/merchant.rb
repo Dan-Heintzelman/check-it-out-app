@@ -1,7 +1,7 @@
 class Merchant < ActiveRecord::Base
 
-  validates_presence_of :username, :business_name, :password_digest
-  validates_uniqueness_of :username
+  validates_presence_of :email, :business_name, :password_digest
+  validates_uniqueness_of :email
 
   has_secure_password
 
