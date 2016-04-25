@@ -6,11 +6,18 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @merchant = Merchant.find(params[:merchant_id])
+    p "YOUR MERCHANT IS #{@merchant}"
   end
 
   def create
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.new(item_params)
+    if @item.save
+      redirect_to
+    else
+
+    end
   end
 
   def edit
@@ -18,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @merchant = Merchant.find(params[:item][:merchant_id])
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
