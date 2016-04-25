@@ -29,6 +29,9 @@ gem 'devise'
 # Allows cross domain requests
 gem 'rack-cors', :require => 'rack/cors'
 
+# Allow for user payments of a bill
+gem 'stripe'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
