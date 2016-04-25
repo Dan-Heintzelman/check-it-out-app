@@ -9,5 +9,6 @@ class Customer < ActiveRecord::Base
   has_many :seatings
   has_many :transactions
   has_many :bills, through: :transactions
+  has_many :items, through: :transactions
 
 end

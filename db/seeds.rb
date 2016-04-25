@@ -6,13 +6,13 @@ Bill.destroy_all
 Order.destroy_all
 Transaction.destroy_all
 
-mike = Customer.create!(first_name: "Mike", last_name: "Yao", email: "Mike@Yao.com", password: "password", username: "myao", financial_info: "Visa")
+mike = Customer.create!(first_name: "Mike", last_name: "Yao", email: "Mike@Yao.com", password: "password", financial_info: "Visa")
 
-zach = Customer.create!(first_name: "Zach", last_name: "Barton", email: "Zach@Barton.com", password: "password", username: "zbarton", financial_info: "AMEX")
+zach = Customer.create!(first_name: "Zach", last_name: "Barton", email: "Zach@Barton.com", password: "password", financial_info: "AMEX")
 
-mcd = Merchant.create!(business_name: "McDonalds", username: "admin", password: "admin", financial_info: "Chase Bank")
+mcd = Merchant.create!(business_name: "McDonalds", email: "mcdadmin", password: "admin", financial_info: "Chase Bank")
 
-hardrock = Merchant.create!(business_name: "Hard Rock Cafe", username: "hadmin", password: "hadmin", financial_info: "Bank of America")
+hardrock = Merchant.create!(business_name: "Hard Rock Cafe", email: "hrcadmin", password: "hadmin", financial_info: "Bank of America")
 
 seating1 = Seating.create!(customer: mike, merchant: mcd, bill_id: 1)
 seating2 = Seating.create!(customer: zach, merchant: hardrock, bill_id: 2)
