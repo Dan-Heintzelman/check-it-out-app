@@ -3,9 +3,7 @@ class MerchantsController < ApplicationController
       @merchants = Merchant.all
       respond_to do |format|
         format.html { }
-        format.json {
-          render json: { location: merchants_path(@merchants) }
-        }
+        format.json { } # DISCUSS WITH BEN
       end
     end
 
