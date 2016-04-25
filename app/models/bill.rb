@@ -32,5 +32,15 @@ class Bill < ActiveRecord::Base
     self.items
   end
 
+  def transaction_array
+    array = []
+    self.transactions.each do |transaction|
+      array << [transaction.customer.first_name, transaction.amount]
+    end
+    return array
+
+  end
+
+
 end
 

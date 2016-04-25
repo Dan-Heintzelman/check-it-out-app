@@ -1,6 +1,8 @@
 class Transaction < ActiveRecord::Base
   belongs_to :bill
   belongs_to :customer
+  validates_presence_of :customer_id
+  validates_uniqueness_of :customer, scope: :bill
   has_many :items, through: :bill
 
   def total
