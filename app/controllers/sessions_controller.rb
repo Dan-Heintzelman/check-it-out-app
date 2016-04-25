@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     respond_to do |format|
       format.html {
         @merchant = Merchant.find_by(email: params[:session][:email])
@@ -15,8 +16,9 @@ class SessionsController < ApplicationController
           log_in_merchant(@merchant)
           redirect_to @merchant
         else
-          flash[:danger] = "Invalid Credentials"
-          render new
+          @errors = []
+          @errors << "Invalid Log-in Credentials"
+          render 'new'
         end
       }
       format.json {

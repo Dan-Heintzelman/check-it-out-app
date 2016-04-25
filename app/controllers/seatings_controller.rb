@@ -46,14 +46,17 @@ class SeatingsController < ApplicationController
     end
   end
 
+
   def destroy
-    @seating = Seating.find(params[:id])
-    @merchant = Merchant.find(params[:merchant_id])
-    @seating.destroy
-    redirect_to merchant_path(@merchant)
+    @seating = Seating.find(params[:id]) #find seating based on url params
+    @merchant = Merchant.find(params[:merchant_id]) #find merchant from nested url
+    @seating.destroy #destroy seating in table
+    redirect_to merchant_path(@merchant) #redirect to that merchants show page
   end
 
+
   private
+  # strong params for mass assignment
     def seating_params
       params.require(:seating).permit(:customer_id, :merchant_id, :assigned, :bill_id)
     end
