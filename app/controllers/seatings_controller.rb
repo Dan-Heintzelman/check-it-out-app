@@ -49,6 +49,7 @@ class SeatingsController < ApplicationController
   def destroy
     @seating = Seating.find(params[:id])
     @merchant = Merchant.find(params[:merchant_id])
+    @seating.destroy
     redirect_to merchant_path(@merchant)
   end
 
