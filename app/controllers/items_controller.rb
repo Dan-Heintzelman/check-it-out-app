@@ -7,20 +7,22 @@ class ItemsController < ApplicationController
 
   def new
     @merchant = Merchant.find(params[:merchant_id])
-    p "YOUR MERCHANT IS #{@merchant}"
   end
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
     @item = Item.new(item_params)
     if @item.save
-      redirect_to
+      @merchant.items << @item
+      redirect_to merchant_items_path(@merchant)
     else
-
+      @errors = @item.errors.full_messages
+      render 'new'
     end
   end
 
   def edit
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
   end
 
