@@ -1,3 +1,9 @@
-<%= form_for @item, url: merchant_item_path(@merchant, @item), method: :put %>
+<%= form_for @item, url: merchant_item_path(@merchant, @item), method: :put do |f| %>
+  <%= f.label :item_description %>
+  <%= f.text_field :item_description, value: @item.item_description %>
 
+  <%= f.label :price %>
+  $<%= f.text_field :price, value: @item.price %>
+
+  <%= f.submit "Update Menu Item" %>
 <% end %>

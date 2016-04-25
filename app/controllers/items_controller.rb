@@ -31,18 +31,18 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
-      redirect_to @merchant
+      redirect_to merchant_items_path(@merchant)
     else
       @errors = @item.errors
-      render edit
+      render 'edit'
     end
   end
 
   def destroy
-    @merchant = Merchant.find(params[:item][:merchant_id])
+    @merchant = Merchant.find(params[:merchant_id])
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to @merchant
+    redirect_to merchant_items_path(@merchant)
   end
 
   private
