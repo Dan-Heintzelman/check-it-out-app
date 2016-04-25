@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   root 'sessions#index'
+  get 'inspect' => 'sessions#inspect'
 
   resources :customers
   resources :bills, except: [:create, :destroy] do
