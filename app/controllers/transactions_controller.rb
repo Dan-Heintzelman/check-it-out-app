@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
 
   def create
     @bill = Bill.find(params[:bill_id])
-    @customer = Customer.find_by(username: params[:username])
+    @customer = Customer.find_by(email: params[:email])
     @transaction = Transaction.new(bill: @bill, customer: @customer)
     if @transaction.save
       @bill.transactions << @transaction
