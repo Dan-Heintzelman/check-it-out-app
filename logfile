@@ -1,0 +1,24 @@
+LOG:  database system was shut down at 2016-04-25 11:02:54 CDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  database "sliceit_development" already exists
+STATEMENT:  CREATE DATABASE "sliceit_development" ENCODING = 'unicode'
+ERROR:  database "travis_ci_test" already exists
+STATEMENT:  CREATE DATABASE "travis_ci_test" ENCODING = 'unicode'
+ERROR:  column bills.payer does not exist at character 37
+STATEMENT:  SELECT "bills".* FROM "bills" WHERE "bills"."payer" = '1'
+ERROR:  column bills.payer does not exist at character 37
+STATEMENT:  SELECT "bills".* FROM "bills" WHERE "bills"."payer" = '1'
+ERROR:  column bills.payer does not exist at character 37
+STATEMENT:  SELECT "bills".* FROM "bills" WHERE "bills"."payer" = 1
+ERROR:  column bills.payer does not exist at character 37
+STATEMENT:  SELECT "bills".* FROM "bills" WHERE "bills"."payer" = 1
+ERROR:  column bills.payer does not exist at character 38
+STATEMENT:  SELECT  "bills".* FROM "bills" WHERE "bills"."payer" = 1 LIMIT 1
+ERROR:  column bills.payer does not exist at character 38
+STATEMENT:  SELECT  "bills".* FROM "bills" WHERE "bills"."payer" = 1 LIMIT 1
+ERROR:  column bills.payer does not exist at character 38
+STATEMENT:  SELECT  "bills".* FROM "bills" WHERE "bills"."payer" = 1 LIMIT 1
+ERROR:  column bills.payer does not exist at character 38
+STATEMENT:  SELECT  "bills".* FROM "bills" WHERE "bills"."payer" = 1 LIMIT 1
