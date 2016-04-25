@@ -1,8 +1,8 @@
 class SeatingsController < ApplicationController
 
   def index
-    @seatings = Seating.where(merchant_id: params[:merchant_id])
-    puts @seatings
+    @merchant = Merchant.find(params[:merchant_id])
+    @seatings = @merchant.seatings
   end
 
   def new
@@ -16,13 +16,44 @@ class SeatingsController < ApplicationController
     @seating.bill = Bill.new
     @customer = Customer.first
     if @seating.save
-      render :json => { location: @customer }
+      render :json => { location: customer_path(@customer) }
     else
-      status 422
+      render json: { location: new_merchant_seating_path, status: :unprocessable_entity}
     end
   end
 
   def show
-    @seating = Seating.find_by()
+    @merchant = Merchant.find(params[:merchant_id])
+    @seating = Seating.find(params[:id])
+    @customer = Customer.find(@seating.customer_id)
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render json: {location: merchant_seating_path(@seating, @merchant)}
+      }
+    end
   end
+
+  def update
+    @merchant = Merchant.find(params[:merchant_id])
+    @seating = Seating.find(params[:id])
+    @customer = Customer.find(@seating.customer_id)
+    if @seating.update(assigned: params[:assigned])
+      redirect_to merchant_seating_path(@seating, @merchant)
+    else
+      flash[:danger] = "Failed to assign User"
+      render show
+    end
+  end
+
+  def destroy
+    @seating = Seating.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
+    redirect_to merchant_path(@merchant)
+  end
+
+  private
+    def seating_params
+      params.require(:seating).permit(:customer_id, :merchant_id, :assigned, :bill_id)
+    end
 end

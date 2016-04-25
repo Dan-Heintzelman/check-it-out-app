@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
           log_in_merchant(@merchant)
           redirect_to @merchant
         else
-          @errors = ["Invalid Credentials"]
+          flash[:danger] = "Invalid Credentials"
           render new
         end
       }

@@ -26,9 +26,10 @@ item4 = Item.create!(merchant: hardrock, item_description: "hard rocks", price: 
   Item.create(merchant_id: Merchant.first.id, item_description: Faker::Commerce.product_name, price: Faker::Commerce.price)
 end
 
-2.times do
-  Bill.create!
-end
+
+seating1.bill = Bill.create!
+seating2.bill = Bill.create!
+
 
 t1 = Transaction.create!(bill_id: 1, customer: mike)
 t2 = Transaction.create!(bill_id: 2, customer: zach)
