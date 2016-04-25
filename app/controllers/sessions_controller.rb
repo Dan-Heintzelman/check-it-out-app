@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
       format.json {
         @customer = Customer.find_by(username: params[:session][:username])
         if @customer && @customer.authenticate(params[:session][:password])
-          log_in_customer(@customer)
-          render json: @customer
+          sign_in(:customer, @customer)
+          render json: {location: customer_path(@customer)}
         else
           render json: { errors: ["Invalid Credentials"]}, status: :unauthorized
         end
@@ -38,10 +38,14 @@ class SessionsController < ApplicationController
         redirect_to root_url
       }
       format.json {
-        log_out_customer
-        redirect_to root_url
+        sign_out(:customer)
+        render json: {location: root_url}
       }
     end
+  end
+
+  def inspect
+
   end
 
   def log_in_merchant(merchant)
