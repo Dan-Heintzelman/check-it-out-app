@@ -3,8 +3,8 @@ class Customer < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates_presence_of :username, :email
-  validates_uniqueness_of :email, :username
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   has_many :seatings
   has_many :transactions

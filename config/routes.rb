@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  devise_for :customers
+  devise_for :customers, :controllers => {sessions: 'customer/sessions', registrations: 'customer/registrations', passwords: 'customer/passwords' }
   resources :merchants do
     resources :items
     resources :seatings
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   root 'sessions#index'
   get 'inspect' => 'sessions#inspect'
 
-  resources :customers
+  # resources :customers
   resources :bills, except: [:create, :destroy] do
     resources :transactions, only: [:create, :show, :update]
     resources :orders, only: [:destroy]
