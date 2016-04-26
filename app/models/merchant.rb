@@ -9,4 +9,13 @@ class Merchant < ActiveRecord::Base
   has_many :seatings
   has_many :bills, through: :seatings
   has_many :customers, through: :seatings
+
+  def checked_in
+  array = []
+  self.customers.each do |x|
+    array << x.id
+  end
+  return array
+  end
+
 end
