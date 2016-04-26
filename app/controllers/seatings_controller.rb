@@ -11,14 +11,17 @@ class SeatingsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    @seating = Seating.new(customer_id: 1)
+    @customer = Customer.find(params[:customer_id])
+    @seating = Seating.new(customer: @customer)
     @merchant.seatings << @seating
-    @seating.bill = Bill.new
-    @customer = Customer.first
+    @seating.bill = Bill.create
+    p @seating
     if @seating.save
-      render :json => { location: customer_path(@customer) }
+
+      render :json => {}
     else
-      render json: { location: new_merchant_seating_path, status: :unprocessable_entity}
+      @seating.bill.destroy
+      render json: {}
     end
   end
 

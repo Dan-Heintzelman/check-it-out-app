@@ -1,5 +1,5 @@
 class Bill < ActiveRecord::Base
-  belongs_to :seating
+  has_one :seating
   has_many :orders
   has_many :transactions
   has_one :customer, through: :seating
