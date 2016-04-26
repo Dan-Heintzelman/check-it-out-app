@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :customer
   validates_presence_of :customer_id
   validates_uniqueness_of :customer, scope: :bill
-  has_many :items, through: :bill
+  has_many :orders
 
   def total
     if self.items.length > 0

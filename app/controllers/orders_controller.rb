@@ -1,10 +1,16 @@
 class OrdersController < ApplicationController
 
-  def destroy
-    @order = Order.find_by(item_id: params[:id], bill_id: params[:bill_id])
-    @order.destroy
-    @bill = Bill.find(params[:bill_id])
-    render :html => {location: @bill}
+  def create
+  end
+
+  def show
+  end
+
+  def update
+    @transaction = Transaction.find(params[:transaction_id])
+    @order = Order.find(params[:id])
+    @order.user_transaction = @transaction
+    @order.save
   end
 
 end
