@@ -48,9 +48,11 @@ class Bill < ActiveRecord::Base
       array << [transaction.customer.first_name, transaction.amount, transaction.id, sum]
     end
     return array
-
   end
 
+  def primary_customer
+    self.customer.id
+  end
 
 end
 

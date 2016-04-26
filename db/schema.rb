@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160424224248) do
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "financial_info"
+    t.string   "stripe_customer_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "reset_password_token"
