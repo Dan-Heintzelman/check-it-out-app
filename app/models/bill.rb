@@ -29,13 +29,23 @@ class Bill < ActiveRecord::Base
   end
 
   def item_array
-    self.items
+    array = []
+    self.orders.each do |order|
+      assigned = ""
+      assigned = order.user_transaction.customer.first_name if order.user_transaction
+      array << {:item_description => order.item.item_description,:price => order.item.price,:id =>order.id,:assigned_to => assigned}
+    end
+    p array
+
   end
+
 
   def transaction_array
     array = []
     self.transactions.each do |transaction|
-      array << [transaction.customer.first_name, transaction.amount]
+      sum = 0
+      transaction.orders.each{|x| sum+=x.item.price if x.item}
+      array << [transaction.customer.first_name, transaction.amount, transaction.id, sum]
     end
     return array
 
