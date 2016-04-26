@@ -1,6 +1,10 @@
 class ChargesController < ApplicationController
-
+  before_filter :check_params
   def new
+  end
+
+  def check_params
+    puts params
   end
 
   def create
