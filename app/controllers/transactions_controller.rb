@@ -30,4 +30,15 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def destroy
+    @bill = Bill.find(params[:bill_id])
+    @transaction = Transaction.find(params[:id])
+    if @transaction.customer_id != @bill.primary_customer
+      @transaction.destroy
+      render json: {}
+    else
+      render json: {}
+    end
+  end
+
 end
