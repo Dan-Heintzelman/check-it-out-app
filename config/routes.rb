@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # resources :customers
   resources :orders, only: [:create, :update, :show]
   resources :bills, except: [:create, :destroy] do
-    resources :transactions, only: [:create, :show, :update]
+    resources :transactions, only: [:create, :show, :update, :destroy]
 
   end
 
