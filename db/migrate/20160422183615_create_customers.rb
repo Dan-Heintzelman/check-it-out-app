@@ -6,6 +6,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :financial_info
+      t.string :stripe_customer_id
       t.timestamps null: false
     end
   end

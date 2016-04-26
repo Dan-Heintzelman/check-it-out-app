@@ -11,4 +11,15 @@ class Customer < ActiveRecord::Base
   has_many :bills, through: :transactions
   has_many :items, through: :transactions
 
+
+  def charge(amount)
+    return nil unless self.stripe_customer_id
+
+    Stripe::Charge.create(
+          :customer    => self.stripe_customer_id,
+          :amount      => amount,
+          :description => 'Rails Stripe customer',
+          :currency    => 'usd'
+        )
+    end
 end
