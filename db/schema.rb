@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(version: 20160424224248) do
   create_table "orders", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "bill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "transaction_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "seatings", force: :cascade do |t|

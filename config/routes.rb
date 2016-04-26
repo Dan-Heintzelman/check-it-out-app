@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   get 'inspect' => 'sessions#inspect'
 
   # resources :customers
+  resources :orders, only: [:create, :update, :show]
   resources :bills, except: [:create, :destroy] do
     resources :transactions, only: [:create, :show, :update]
-    resources :orders, only: [:destroy]
+
   end
 
   resources :charges
