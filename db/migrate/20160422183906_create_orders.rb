@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :item_id
       t.integer :bill_id
       t.integer :transaction_id
+      t.decimal :amount_paid
       t.timestamps null: false
     end
   end

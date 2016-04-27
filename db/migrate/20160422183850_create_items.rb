@@ -4,6 +4,7 @@
       t.integer :merchant_id
       t.string :item_description
       t.decimal :price, precision: 8, scale: 2
+      t.integer :int_price
       t.timestamps null: false
     end
   end
