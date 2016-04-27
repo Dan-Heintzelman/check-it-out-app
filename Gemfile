@@ -36,6 +36,10 @@ gem 'stripe'
 
 # Twillio gem
 gem 'twilio-ruby'
+# Faker gem
+gem 'faker'
+# Recommended by heroku
+gem 'rails_12factor'
 
 
 # Use Unicorn as the app server
@@ -48,7 +52,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
-  gem 'faker'
+
 end
 
 group :development do

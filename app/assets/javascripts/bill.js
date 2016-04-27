@@ -1,5 +1,5 @@
 function Bill(){
-  this.items = []
+  this.items = [];
 }
 
 Bill.prototype.addItem = function(item){
