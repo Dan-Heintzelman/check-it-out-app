@@ -21,5 +21,6 @@ class Customer < ActiveRecord::Base
           :description => 'Rails Stripe customer',
           :currency    => 'usd'
         )
-    end
+  end
+
 end

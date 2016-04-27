@@ -45,7 +45,7 @@ class Bill < ActiveRecord::Base
     self.transactions.each do |transaction|
       sum = 0
       transaction.orders.each{|x| sum+=x.item.price if x.item}
-      array << [transaction.customer.first_name, transaction.amount, transaction.id, sum]
+      array << [transaction.customer.first_name, transaction.amount, transaction.id, sum, transaction.customer.id]
     end
     return array
   end

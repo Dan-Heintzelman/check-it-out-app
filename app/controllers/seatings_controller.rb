@@ -14,8 +14,11 @@ class SeatingsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @seating = Seating.new(customer: @customer)
     @merchant.seatings << @seating
-    @seating.bill = Bill.create
+    @seating.bill = Bill.create!
+
     if @seating.save
+      @seating.bill.customer = @customer
+      @seating.bill.transactions << Transaction.create(customer: @customer)
       render :json => {}
     else
       @seating.bill.destroy
