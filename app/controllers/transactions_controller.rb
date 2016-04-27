@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
 
   def show
     @transaction = Transaction.find(params[:id])
-    render :json => {location: @transaction}
+    render :json => {}
   end
 
   def update

@@ -13,3 +13,12 @@ class Transaction < ActiveRecord::Base
     end
   end
 end
+
+def orders_array
+  self.orders
+end
+
+def merchant
+  self.bill.merchant.business_name
+end
+
