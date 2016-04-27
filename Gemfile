@@ -38,6 +38,8 @@ gem 'stripe'
 gem 'twilio-ruby'
 # Faker gem
 gem 'faker'
+# Recommended by heroku
+gem 'rails_12factor'
 
 
 # Use Unicorn as the app server
