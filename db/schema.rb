@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20160424224248) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "financial_info"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.decimal  "tax",             precision: 4, scale: 4, default: 0.05
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   create_table "orders", force: :cascade do |t|

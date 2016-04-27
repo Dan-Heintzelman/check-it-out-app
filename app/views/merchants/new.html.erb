@@ -1,0 +1,26 @@
+<%= form_for :merchant, url: merchants_path, method: :post do |f| %>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :business_name %>
+  <%= f.text_field :business_name %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :financial_info %>
+  <%= f.text_field :financial_info %>
+
+  <%= f.label :tax %>
+  <%= f.text_field :tax %>
+
+  <%= f.submit "Create Merchant Profile" %>
+<% end %>

@@ -9,24 +9,21 @@ class MerchantsController < ApplicationController
 
     def create
       @merchant = Merchant.new(merchant_params)
+      if @merchant.save
+        log_in_merchant(@merchant)
+        redirect_to @merchant
+      else
+        errors = @merchant.errors.full_messages
+        render 'new'
+      end
     end
 
     def new
-      @merchant = Merchant.new
     end
 
     def edit
       @merchant = Merchant.find(params[:id])
-      @merchant.update(merchant_params)
-      if @merchant.save
-        redirect_to @merchant
-      else
-        @errors = @merchant.errors
-        render edit
-      end
     end
-
-
 
     def show
       @merchant = Merchant.find(params[:id])
@@ -34,12 +31,22 @@ class MerchantsController < ApplicationController
         format.json { render json: { location: merchant_path(@merchant) }}
         format.html { }
       end
+    end
 
+    def update
+      @merchant = Merchant.find(params[:id])
+      @merchant.update(merchant_params)
+      if @merchant.save
+        redirect_to @merchant
+      else
+        errors = @merchant.errors.full_messages
+        render 'edit'
+      end
     end
 
 
     private
       def merchant_params
-        params.require(:merchant).permit(:business_name, :username, :password, :financial_info)
+        params.require(:merchant).permit(:business_name, :email, :password, :financial_info, :tax)
       end
 end
