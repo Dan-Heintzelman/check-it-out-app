@@ -55,27 +55,19 @@
     }
 
     function removeItemEvent(event, ui){
-      var menuItem = ui.draggable
-      var itemName = (menuItem.children().first().text())
-      var item = $.grep(bill.items, function(e){return e.name === itemName})
-      var index = bill.items.findIndex(x => x.name==item[0].name)
-      // var dropURL = '/bills/' + billID + '/orders/' + bill.items[index].merchant_item_id
-      // console.log(dropURL)
-      //ajax request to the delete function (order-destroy nested under bills)
+      var menuItem = ui.draggable;
+      var itemName = (menuItem.children().first().text());
+      var item = $.grep(bill.items, function(e){return e.name === itemName});
+      var index = bill.items.findIndex(function (x) {
+        return x.name == item[0].name;
+      });
 
-      // $.ajax({
-      //   type: "DELETE",
-      //   url: dropURL,
-      //   success: function() {
-
-      //   }
-      // });
 
       $(menuItem).remove();
       bill.items.splice(index, 1);
       var total = bill.total();
       $("#bill_total").text("$"+total/100);
-    }
+    };
 
    $("#clear_bill").on("click", function(){
     bill.clear();
