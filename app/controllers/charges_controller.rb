@@ -9,8 +9,9 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
-    @amount = params[:charge_amount]
-    current_customer.charge(@amount);
+    customer = Customer.find(params[:customer_id])
+    amount = params[:charge_amount]
+    customer.charge(amount);
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

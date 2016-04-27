@@ -19,9 +19,11 @@ class TransactionsController < ApplicationController
 
   def update
     p params
+
     @bill = Bill.find(params[:bill_id])
     @customer = Customer.find(params[:user_id])
-    @transaction = Transaction.find_by(bill: @bill, customer: @customer)
+    charge = @customer.charge((params[:amount].to_f*100).to_i)
+    @transaction = Transaction.find_by(bill: @bill, customer: @customer) if charge
     @transaction.amount += params[:amount].to_f
     if @transaction.save
       render json: { location: bill_path(@bill) }
