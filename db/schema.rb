@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160424224248) do
     t.integer  "merchant_id"
     t.string   "item_description"
     t.decimal  "price",            precision: 8, scale: 2
+    t.integer  "int_price"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
