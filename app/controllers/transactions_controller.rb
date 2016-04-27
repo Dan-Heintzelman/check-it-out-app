@@ -6,10 +6,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(bill: @bill, customer: @customer)
     if @transaction.save
       @bill.transactions << @transaction
-      puts "I SAVED OH NO!"
       render json: {location: @transaction}
     else
-      puts 'OKAY WELL AT LEAST IM NOT SAVING!'
       render :json => @customer, :status => 404
     end
   end
@@ -20,7 +18,6 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    p params
     @bill = Bill.find(params[:bill_id])
     @customer = Customer.find(params[:user_id])
     @transaction = Transaction.find_by(bill: @bill, customer: @customer)

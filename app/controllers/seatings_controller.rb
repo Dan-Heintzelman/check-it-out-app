@@ -15,9 +15,7 @@ class SeatingsController < ApplicationController
     @seating = Seating.new(customer: @customer)
     @merchant.seatings << @seating
     @seating.bill = Bill.create
-    p @seating
     if @seating.save
-
       render :json => {}
     else
       @seating.bill.destroy
