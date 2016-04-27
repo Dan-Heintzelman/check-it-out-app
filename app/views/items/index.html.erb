@@ -3,12 +3,13 @@
 <table>
   <tr>
     <td>Item</td>
-    <td>Price</td>
+    <td><i>Price + Tx.</i></td>
+    <td colspan='2'>Edit Your Menu</td>
   </tr>
   <% @items.each do |item| %>
     <tr>
       <td><%= item.item_description %></td>
-      <td>$<%= item.price %></td>
+      <td><%= number_to_currency((item.price * 1 + @merchant.tax).round(2), precision: 2) %></td>
       <td><%= link_to "Edit Item", edit_merchant_item_path(@merchant, item) %></td>
       <td><%= link_to "Delete Item", merchant_item_path(@merchant, item), method: :delete %></td>
     </tr>
