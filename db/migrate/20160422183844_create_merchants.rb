@@ -5,6 +5,7 @@ class CreateMerchants < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.string :financial_info
+      t.decimal :tax, default: 0.050, precision:4, scale: 4
       t.timestamps null: false
     end
   end
