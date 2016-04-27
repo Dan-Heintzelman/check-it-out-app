@@ -58,7 +58,9 @@
       var menuItem = ui.draggable;
       var itemName = (menuItem.children().first().text());
       var item = $.grep(bill.items, function(e){return e.name === itemName});
-      var index = bill.items.findIndex(x => x.name==item[0].name);
+      var index = bill.items.findIndex(function (x) {
+        return x.name == item[0].name;
+      });
 
 
       $(menuItem).remove();
