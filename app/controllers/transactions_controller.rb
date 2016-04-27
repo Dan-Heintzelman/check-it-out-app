@@ -14,13 +14,13 @@ class TransactionsController < ApplicationController
 
   def show
     @transaction = Transaction.find(params[:id])
-    render :json => {}
+    p params
   end
 
   def update
     @bill = Bill.find(params[:bill_id])
     @customer = Customer.find(params[:user_id])
-    charge = @customer.charge((params[:amount].to_f*100).to_i)
+    charge = @customer.charge((params[:amount].to_f).to_i)
     @transaction = Transaction.find_by(bill: @bill, customer: @customer) if charge
     @transaction.amount += params[:amount].to_f
     if @transaction.save

@@ -4,21 +4,21 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :customer_id
   validates_uniqueness_of :customer, scope: :bill
   has_many :orders
+  has_many :items, through: :orders
 
   def total
     if self.items.length > 0
-      return self.items.reduce(0) { |sum, item| sum + item.price}
+      return self.items.reduce(0) { |sum, item| sum + item.price_to_cents}
     else
       return 0
     end
   end
-end
 
-def orders_array
-  self.orders
-end
+  def items_array
+    self.items
+  end
 
-def merchant
-  self.bill.merchant.business_name
+  def merchant_name
+    self.bill.merchant.business_name
+  end
 end
-

@@ -1,1 +1,1 @@
-json.extract! @bill, :id, :merchant_name, :total, :paid?, :item_array, :primary_customer, :transaction_array
+json.extract! @transaction, :id, :merchant_name, :total, :items_array, :amount
