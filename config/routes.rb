@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  post 'notify' => 'notifications#create'
+
   root 'sessions#index'
   get 'inspect' => 'sessions#inspect'
 
