@@ -8,7 +8,7 @@
   <tr>
     <% if @seating.assigned? %>
       <td><%= @customer.first_name %> has been seated</td>
-      <td><%= link_to "Remove Check-in", merchant_seating_path(@seating, @merchant), method: :delete %></td>
+      <td><%= link_to "Remove Check-in", merchant_seating_path(@merchant, @seating), method: :delete %></td>
     <% else %>
       <td><%= @customer.first_name %> is still awaiting a seat</td>
       <td><%= link_to "Assign Them", merchant_seating_path(seating_id: @seating.id, assigned: true, merchant_id: @seating.merchant_id), method: :put %>

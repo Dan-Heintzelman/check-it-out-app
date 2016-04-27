@@ -2,7 +2,7 @@
 
 <% @seatings.each do |seating| %>
 
-  <%= link_to "#{Customer.find(seating.customer_id).first_name} #{Customer.find(seating.customer_id).last_name}", merchant_seating_path(seating, @merchant) %>
+  <%= link_to "#{Customer.find(seating.customer_id).first_name} #{Customer.find(seating.customer_id).last_name}", merchant_seating_path(@merchant, seating) %>
   <ul>
     <li><%= link_to 'Edit Bill', edit_bill_path(seating.bill_id) %></li>
     <li><%= link_to 'View Bill', bill_path(seating.bill_id) %></li>

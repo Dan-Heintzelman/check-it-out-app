@@ -32,7 +32,7 @@ class SeatingsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json {
-        render json: {location: merchant_seating_path(@seating, @merchant)}
+        render json: {location: merchant_seating_path(@merchant, @seating)}
       }
     end
   end
@@ -42,7 +42,7 @@ class SeatingsController < ApplicationController
     @seating = Seating.find(params[:id])
     @customer = Customer.find(@seating.customer_id)
     if @seating.update(assigned: params[:assigned])
-      redirect_to merchant_seating_path(@seating, @merchant)
+      redirect_to merchant_seating_path(@merchant, @seating)
     else
       flash[:danger] = "Failed to assign User"
       render show

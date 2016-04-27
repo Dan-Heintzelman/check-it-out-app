@@ -6,9 +6,11 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(bill: @bill, customer: @customer)
     if @transaction.save
       @bill.transactions << @transaction
+      puts "I SAVED OH NO!"
       render json: {location: @transaction}
     else
-      status 422
+      puts 'OKAY WELL AT LEAST IM NOT SAVING!'
+      render :json => @customer, :status => 404
     end
   end
 
@@ -24,9 +26,9 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find_by(bill: @bill, customer: @customer)
     @transaction.amount += params[:amount].to_f
     if @transaction.save
-      render json: { location: bill_path(@bill) }
+      render json: { }
     else
-      status 422
+      render json: {status: :not_found}
     end
   end
 
