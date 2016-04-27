@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
       @bill.transactions << @transaction
       render json: {location: @transaction}
     else
-      status 422
+      render :json => @customer, :status => 404
     end
   end
 
@@ -18,17 +18,15 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    p params
-
     @bill = Bill.find(params[:bill_id])
     @customer = Customer.find(params[:user_id])
     charge = @customer.charge((params[:amount].to_f*100).to_i)
     @transaction = Transaction.find_by(bill: @bill, customer: @customer) if charge
     @transaction.amount += params[:amount].to_f
     if @transaction.save
-      render json: { location: bill_path(@bill) }
+      render json: { }
     else
-      status 422
+      render json: {status: :not_found}
     end
   end
 
