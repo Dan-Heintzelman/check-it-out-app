@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
+# Load ENV keys
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -31,8 +33,10 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # Allow for user payments of a bill
 gem 'stripe'
-# gem for env
-gem 'dotenv'
+
+# Twillio gem
+gem 'twilio-ruby'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -54,4 +58,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
