@@ -25,7 +25,18 @@ class Bill < ActiveRecord::Base
   end
 
   def paid?
-    total == transactions{ |sum, n| sum + n.amount }
+    transaction_total = self.transactions.reduce(0) { |sum, t| sum += t.amount }
+    paid_items = 0
+    self.transactions.each do |t|
+      if t.amount >= t.items.reduce(0) { |sum, item| sum += item.price }
+        paid_items += t.items.length
+      end
+    end
+    puts "Transaction Total #{transactions}"
+    puts "Total #{total}"
+    puts "Paid Items #{paid_items}"
+    puts "Total Items #{self.items.length}"
+    return transaction_total >= total && paid_items == self.items.length && self.items.length > 0
   end
 
   def item_array
