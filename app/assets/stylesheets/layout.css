@@ -34,5 +34,13 @@ body {
   text-decoration: underline;
 }
 
+table {
+  width: auto;
+  vertical-align: top;
+}
+
+
+
+
 
 

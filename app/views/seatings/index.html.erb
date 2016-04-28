@@ -1,8 +1,9 @@
-<h2>Here are all of the SliceIt users currently checked in at your restaurant</h2>
+<h2>Current Seating Status</h2>
 
 <table>
   <tr>
     <th>Customers Waiting To Be Seated</th>
+    <th>Cancel Check-In</th>
   </tr>
   <% @seatings.each do |seating| %>
     <% if !seating.assigned %>
@@ -18,14 +19,13 @@
 <table>
   <tr>
     <th>Currently Seated Customers</th>
-    <th colspan='2'>Edit Customer Bill</th>
+    <th>Edit Customer Bill</th>
   </tr>
   <% @seatings.each do |seating| %>
     <% if seating.assigned %>
       <tr>
         <td><%= link_to "#{Customer.find(seating.customer_id).first_name} #{Customer.find(seating.customer_id).last_name}", merchant_seating_path(@merchant,seating) %></td>
         <td><%= link_to 'Edit Bill', edit_bill_path(seating.bill_id) %></td>
-        <td><%= link_to 'View Bill', bill_path(seating.bill_id) %></td>
       </tr>
     <% end %>
   <% end %>
