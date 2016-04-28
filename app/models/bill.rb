@@ -62,5 +62,8 @@ class Bill < ActiveRecord::Base
     self.customer.id
   end
 
+  def primary_customer_name
+    self.customer.first_name
+  end
 end
 
