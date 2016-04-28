@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20160424224248) do
   add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
 
   create_table "items", force: :cascade do |t|
-    t.integer  "merchant_id"
-    t.string   "item_description"
+    t.integer  "merchant_id",                              null: false
+    t.string   "item_description",                         null: false
     t.decimal  "price",            precision: 8, scale: 2
     t.integer  "int_price"
     t.datetime "created_at",                               null: false
@@ -54,18 +54,18 @@ ActiveRecord::Schema.define(version: 20160424224248) do
   end
 
   create_table "merchants", force: :cascade do |t|
-    t.string   "business_name"
-    t.string   "email"
+    t.string   "business_name",                                          null: false
+    t.string   "email",                                                  null: false
     t.string   "password_digest"
-    t.string   "financial_info"
+    t.string   "financial_info",                                         null: false
     t.decimal  "tax",             precision: 4, scale: 4, default: 0.05
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "bill_id"
+    t.integer  "item_id",        null: false
+    t.integer  "bill_id",        null: false
     t.integer  "transaction_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

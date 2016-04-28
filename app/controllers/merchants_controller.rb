@@ -49,4 +49,8 @@ class MerchantsController < ApplicationController
       def merchant_params
         params.require(:merchant).permit(:business_name, :email, :password, :financial_info, :tax)
       end
+
+      def log_in_merchant(merchant)
+        session[:merchant_id] = merchant.id
+      end
 end
