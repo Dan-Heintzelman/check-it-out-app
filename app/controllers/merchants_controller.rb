@@ -39,7 +39,7 @@ class MerchantsController < ApplicationController
       if @merchant.save
         redirect_to @merchant
       else
-        errors = @merchant.errors.full_messages
+        @errors = @merchant.errors.full_messages
         render 'edit'
       end
     end
