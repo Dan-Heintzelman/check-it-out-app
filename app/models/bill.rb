@@ -32,11 +32,8 @@ class Bill < ActiveRecord::Base
         paid_items += t.items.length
       end
     end
-    puts "Transaction Total #{transactions}"
-    puts "Total #{total}"
-    puts "Paid Items #{paid_items}"
-    puts "Total Items #{self.items.length}"
-    return transaction_total >= total && paid_items == self.items.length && self.items.length > 0
+
+    return transaction_total >= total/100.0 && paid_items == self.items.length && self.items.length > 0
   end
 
   def item_array
