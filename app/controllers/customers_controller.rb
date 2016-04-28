@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
 
-  before_action :authenticate_customer!, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_customer!, only: [ :edit, :destroy]
   def index
     @customers = Customer.all
 
@@ -23,7 +23,6 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    render json: { location: customer_path(@customer) }
   end
 
   def edit
@@ -32,6 +31,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    p params
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       render json: { location: customer_path(@customer)}
@@ -48,7 +48,7 @@ class CustomersController < ApplicationController
 
   private
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :password, :email)
+      params.require(:customer).permit(:id, :first_name, :last_name, :password, :email)
     end
 
 end
