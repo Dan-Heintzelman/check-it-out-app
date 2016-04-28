@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160424224248) do
     t.integer  "item_id"
     t.integer  "bill_id"
     t.integer  "transaction_id"
-    t.decimal  "amount_paid"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
