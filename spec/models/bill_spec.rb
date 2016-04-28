@@ -29,9 +29,11 @@ RSpec.describe Bill, type: :model do
       expect(bill.paid?).to be(false)
     end
 
+
     it "is not paid if the transaction amount is less than the bill total" do
       bill.items << item1
       tran1.orders << order1
+      tran1.items << item1
       bill.transactions << tran1
       expect(bill.total/100).to eq(1.00)
       expect(bill.paid?).to be(false)
