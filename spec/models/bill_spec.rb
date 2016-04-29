@@ -4,7 +4,7 @@ RSpec.describe Bill, type: :model do
 
   pending "add some examples to (or delete) #{__FILE__}"
 
-  describe "the paid? function" do
+  describe "the paid function" do
     let(:merchant) {Merchant.new(business_name: "Portillos", email: "email", password: "password", financial_info: "Money")}
     let(:customer) {Customer.new(first_name: "Ben", last_name: "Giamarino", email: "giaamriob@gmail.com", password: "12345")}
     let(:item1) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 1.00)}
@@ -12,7 +12,7 @@ RSpec.describe Bill, type: :model do
     let(:item3) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 3.00)}
     let(:item4) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 4.00)}
     let(:item5) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 5.00)}
-    let(:bill) {Bill.new(seating_id: 1)}
+    let(:bill) {Bill.new}
     let(:tran1) {Transaction.new(customer_id: customer, amount: 0.00)}
     let(:tran2) {Transaction.new(customer_id: customer, amount: 100.00)}
     let(:order1) {Order.new(item: item1, bill: bill)}
@@ -26,7 +26,7 @@ RSpec.describe Bill, type: :model do
 
 
     it "is not paid if there are no items on the bill" do
-      expect(bill.paid?).to be(false)
+      expect(bill.paid).to be(false)
     end
 
 
@@ -36,7 +36,7 @@ RSpec.describe Bill, type: :model do
       tran1.items << item1
       bill.transactions << tran1
       expect(bill.total/100).to eq(1.00)
-      expect(bill.paid?).to be(false)
+      expect(bill.paid).to be(false)
     end
 
     it "is not paid if all the items are not accounted for - even if the amount paid is above the total for the bill" do
@@ -46,7 +46,7 @@ RSpec.describe Bill, type: :model do
       tran2.items << item3 << item4 << item5
       bill.items << item1 << item2 << item3 << item4 << item5
       bill.transactions << tran1 << tran2
-      expect(bill.paid?).to be(false)
+      expect(bill.paid).to be(false)
     end
 
     it "is paid if all the items are acounted for between all the transactions and the amount paid is equal to or larger than   the total and there is more than one element on the bill" do
@@ -56,7 +56,7 @@ RSpec.describe Bill, type: :model do
       tran4.items << item3 << item4 << item5
       bill.items << item1 << item2 << item3 << item4 << item5
       bill.transactions << tran3 << tran4
-      expect(bill.paid?).to be(true)
+      expect(bill.paid).to be(true)
     end
   end
 end

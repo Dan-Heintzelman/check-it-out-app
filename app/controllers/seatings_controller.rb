@@ -14,7 +14,8 @@ class SeatingsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @seating = Seating.new(customer: @customer)
     @merchant.seatings << @seating
-    @seating.bill = Bill.create!
+    @bill = Bill.create!
+    @seating.bill = @bill
 
     if @seating.save
       @seating.bill.customer = @customer
