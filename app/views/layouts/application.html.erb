@@ -24,7 +24,7 @@
 
   <body>
     <div class="parallax-container">
-      <div class="parallax"><%= image_tag 'group1.tif' %></div>
+      <div class="parallax"><img src="<%= asset_path 'group1.tif' %>" /></div>
     </div>
     <div class="row container">
       <p class="grey-text text-darken-3 lighten-3"><%= yield %></p>
