@@ -18,7 +18,7 @@ Transaction.destroy_all
 
 lm = Merchant.create!(business_name: "Illuminati's Deep-Dish Pizza", email: "lmadmin", password: "admin", financial_info: "Bank of America")
 
-3v = Merchant.create!(business_name: "Tres Verdes", email: "tvadmin", password: "admin", financial_info: "Bank of America")
+tv = Merchant.create!(business_name: "Tres Verdes", email: "tvadmin", password: "admin", financial_info: "Bank of America")
 
 pc = Merchant.create!(business_name: "Pepper Lannister", email: "pladmin", password: "admin", financial_info: "Bank of America")
 
@@ -27,7 +27,7 @@ rd = Merchant.create!(business_name: "Ramen Dogedata", email: "rdadmin", passwor
 mcd = Merchant.create!(business_name: "McDanald's", email: "mcdadmin", password: "admin", financial_info: "Bank of America")
 
 # seating1 = Seating.create!(customer: mike, merchant: rd, bill_id: 1)
-# seating2 = Seating.create!(customer: zach, merchant: 3v, bill_id: 2)
+# seating2 = Seating.create!(customer: zach, merchant: tv, bill_id: 2)
 
 item1 = Item.create!(merchant: rd, item_description: "Tonkatsu", price: 14.00)
 item2 = Item.create!(merchant: rd, item_description: "Chicken Paitan", price: 12.00)
@@ -36,10 +36,10 @@ item4 = Item.create!(merchant: rd, item_description: "Thousand-Year-Egg Ramen", 
 item5 = Item.create!(merchant: lm, item_description: "Pepperoni Pizza", price: 15.11)
 item6 = Item.create!(merchant: lm, item_description: "Cheese Pizza", price: 16.11)
 item7 = Item.create!(merchant: lm, item_description: "Lasagna", price: 9.77)
-item8 = Item.create!(merchant: 3v, item_description: "Small Cheval Cheeseburger", price: 13.43)
-item9 = Item.create!(merchant: 3v, item_description: "Fries", price: 4.22)
-item10 = Item.create!(merchant: 3v, item_description: "Overpriced Salad", price: 18.66)
-item11 = Item.create!(merchant: 3v, item_description: "Cocktail", price: 8.00)
+item8 = Item.create!(merchant: tv, item_description: "Small Cheval Cheeseburger", price: 13.43)
+item9 = Item.create!(merchant: tv, item_description: "Fries", price: 4.22)
+item10 = Item.create!(merchant: tv, item_description: "Overpriced Salad", price: 18.66)
+item11 = Item.create!(merchant: tv, item_description: "Cocktail", price: 8.00)
 item12 = Item.create!(merchant: pc, item_description: "Tater Tots", price: 7.07)
 item13 = Item.create!(merchant: pc, item_description: "Quesadilla", price: 9.09)
 item14 = Item.create!(merchant: pc, item_description: "Mediocre Tuna Melt", price: 4.11)
