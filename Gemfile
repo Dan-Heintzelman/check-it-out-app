@@ -41,6 +41,8 @@ gem 'faker'
 # Recommended by heroku
 gem 'rails_12factor'
 
+gem 'materialize-sass'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
