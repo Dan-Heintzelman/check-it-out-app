@@ -22,7 +22,9 @@ lm = Merchant.create!(business_name: "Illuminati's Deep-Dish Pizza", email: "lma
 
 pc = Merchant.create!(business_name: "Pepper Lannister", email: "pladmin", password: "admin", financial_info: "Bank of America")
 
-rd = Merchant.create!(business_name: "Ramen Dogudata", email: "rdadmin", password: "admin", financial_info: "Bank of America")
+rd = Merchant.create!(business_name: "Ramen Dogedata", email: "rdadmin", password: "admin", financial_info: "Bank of America")
+
+mcd = Merchant.create!(business_name: "McDanald's", email: "mcdadmin", password: "admin", financial_info: "Bank of America")
 
 # seating1 = Seating.create!(customer: mike, merchant: rd, bill_id: 1)
 # seating2 = Seating.create!(customer: zach, merchant: 3v, bill_id: 2)
@@ -42,6 +44,8 @@ item12 = Item.create!(merchant: pc, item_description: "Tater Tots", price: 7.07)
 item13 = Item.create!(merchant: pc, item_description: "Quesadilla", price: 9.09)
 item14 = Item.create!(merchant: pc, item_description: "Mediocre Tuna Melt", price: 4.11)
 item15 = Item.create!(merchant: pc, item_description: "Beer", price: 5.88)
+item16 = Item.create!(merchant: mcd, item_description: "Mountain Climbin' Mountain Dew", price: 4.11)
+item17 = Item.create!(merchant: mcd, item_description: "Big Dan Patty Melt", price: 5.88)
 
 10.times do
   Item.create(merchant_id: Merchant.first.id, item_description: Faker::Commerce.product_name, price: Faker::Commerce.price)
