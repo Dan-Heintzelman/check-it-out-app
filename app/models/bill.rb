@@ -24,7 +24,7 @@ class Bill < ActiveRecord::Base
     self.seating.id if self.seating
   end
 
-  def paid?
+  def paid
     transaction_total = self.transactions.reduce(0) { |sum, t| sum += t.amount }
     paid_items = 0
     self.transactions.each do |t|
