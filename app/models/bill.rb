@@ -39,7 +39,7 @@ class Bill < ActiveRecord::Base
   def item_array
     array = []
     self.orders.each do |order|
-      assigned = ""
+      assigned = "?"
       assigned = order.user_transaction.customer.first_name if order.user_transaction
       array << {:item_description => order.item.item_description,:price => order.item.price,:id =>order.id,:assigned_to => assigned}
     end
@@ -62,5 +62,8 @@ class Bill < ActiveRecord::Base
     self.customer.id
   end
 
+  def primary_customer_name
+    self.customer.first_name
+  end
 end
 
