@@ -43,7 +43,7 @@ class SeatingsController < ApplicationController
     @seating = Seating.find(params[:id])
     @customer = Customer.find(@seating.customer_id)
     if @seating.update(assigned: params[:assigned])
-      redirect_to merchant_seating_path(@merchant, @seating)
+      redirect_to merchant_seatings_path(@merchant)
     else
       flash[:danger] = "Failed to assign User"
       render show
