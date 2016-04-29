@@ -12,6 +12,8 @@ mike = Customer.create!(first_name: "Mike", last_name: "Yao", email: "Mike@Yao.c
 
 zach = Customer.create!(first_name: "Zach", last_name: "Barton", email: "Zach@Barton.com", password: "password", financial_info: "AMEX")
 
+ben = Customer.create!(first_name: "Ben", last_name: "Giamarino", email: "ben@gmail.com", password: "password", financial_info: "VISA")
+
 mcd = Merchant.create!(business_name: "McDonalds", email: "mcdadmin", password: "admin", financial_info: "Chase Bank")
 
 hardrock = Merchant.create!(business_name: "Hard Rock Cafe", email: "hrcadmin", password: "hadmin", financial_info: "Bank of America")
