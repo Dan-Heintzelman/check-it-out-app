@@ -38,7 +38,7 @@
   </tr>
   <tr>
     <% @seatings.each do |seating| %>
-      <% if seating.bill.paid? %>
+      <% if seating.bill.paid %>
         <tr>
           <td><%= link_to "#{Customer.find(seating.customer_id).first_name} #{Customer.find(seating.customer_id).last_name}", merchant_seating_path(@merchant,seating) %></td>
           <td><%= link_to 'View Bill', bill_path(seating.bill_id) %></td>
