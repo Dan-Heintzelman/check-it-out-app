@@ -33,7 +33,7 @@ class Bill < ActiveRecord::Base
       end
     end
 
-    return transaction_total >= total/100.0 && paid_items == self.items.length && self.items.length > 0
+    return self.items.length > 0 && transaction_total >= total/100.0 && paid_items == self.items.length
   end
 
   def item_array

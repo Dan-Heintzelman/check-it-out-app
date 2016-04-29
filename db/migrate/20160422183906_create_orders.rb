@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.integer :item_id, null: false
       t.integer :bill_id, null: false
-      t.integer :transaction_id, null: false
+      t.integer :transaction_id
       t.timestamps null: false
     end
   end

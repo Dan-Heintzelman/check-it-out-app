@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Sliceit</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <% if logged_in? %>
-    <p><%= link_to("Log Out", logout_path, method: :delete) %>
-       <%= link_to "Home", merchant_path(current_user) %>
-    </p>
-  <% else %>
-    <p><%= link_to "Home", root_path %></p>
-  <% end %>
-</head>
-<body>
+  <head>
+    <title>Slice it</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <%= csrf_meta_tags %>
+      <div class='header'>
+        <div class='links'>
+          <% if logged_in? %>
+            <p>
+              <%= link_to("Log Out", logout_path, method: :delete) %>
+              <%= link_to "Home", merchant_path(current_user) %>
+            </p>
+          <% else %>
+            <p><%= link_to "Home", root_path %></p>
+          <% end %>
+        </div>
+        <h1 class='title'><b>Slice-It!</b></h1>
+      </div>
+  </head>
 
-<%= yield %>
+  <body>
+    <div class="parallax-container">
+      <div class="parallax"><%= image_tag 'group1.tif' %></div>
+    </div>
+    <div class="row container">
+      <p class="grey-text text-darken-3 lighten-3"><%= yield %></p>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><%= image_tag 'group3.jpg' %></div>
+    </div>
 
-</body>
+  </body>
 </html>

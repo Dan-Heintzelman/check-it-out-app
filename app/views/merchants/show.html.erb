@@ -1,7 +1,5 @@
 <h1><%= @merchant.business_name %></h1>
 
-<p>See Your Menu<p>
-<p><%= link_to "Menu", merchant_items_path(@merchant) %><p>
 
 <h2>Your info</h2>
 <table>
@@ -15,7 +13,7 @@
   </tr>
 </table>
 
+<p><%= link_to "Menu", merchant_items_path(@merchant) %><p>
 <p><%= link_to("Edit Your Info", edit_merchant_path(@merchant)) %>
 <p><%= link_to("See Your Seatings!", merchant_seatings_path(@merchant)) %><p>
-<p><%= link_to 'Back', merchants_path %></p>
 
