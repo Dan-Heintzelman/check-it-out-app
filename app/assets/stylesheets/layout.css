@@ -1,8 +1,8 @@
 .header {
   position: relative;
   width: 101%;
-  background-color: #009EF4;
-  height: 83px;
+  background-color: white;
+  height: 84px;
   margin-top: -16px;
   margin-left: -8px;
   text-align: left;
@@ -10,7 +10,7 @@
 }
 
 .links a {
-  color: white;
+  color: #EE6E73;
   position: relative;
   top: 30px;
   margin-left: 15px;
