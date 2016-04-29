@@ -1,8 +1,8 @@
 .header {
   position: relative;
   width: 101%;
-  background-color: #0066ff;
-  height: 60px;
+  background-color: #009EF4;
+  height: 83px;
   margin-top: -16px;
   margin-left: -8px;
   text-align: left;
@@ -12,7 +12,7 @@
 .links a {
   color: white;
   position: relative;
-  top: 17px;
+  top: 30px;
   margin-left: 15px;
 }
 
@@ -26,12 +26,14 @@ body {
 
 .title {
   position: relative;
-  top: -60px;
+  top: -36px;
   left: 45%;
   color: white;
-  font-family: Roboto;
-  font-style: italic;
-  text-decoration: underline;
+  height: 90px;
+  width: 280px;
+  background-image: url('logo.png');
+  background-repeat: no-repeat;
+  background-size: 277px 83px;
 }
 
 table {
