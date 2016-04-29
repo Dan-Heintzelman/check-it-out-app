@@ -12,7 +12,7 @@ RSpec.describe Bill, type: :model do
     let(:item3) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 3.00)}
     let(:item4) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 4.00)}
     let(:item5) {Item.new(merchant: merchant, item_description: "Cheesburger", price: 5.00)}
-    let(:bill) {Bill.new(seating_id: 1)}
+    let(:bill) {Bill.new}
     let(:tran1) {Transaction.new(customer_id: customer, amount: 0.00)}
     let(:tran2) {Transaction.new(customer_id: customer, amount: 100.00)}
     let(:order1) {Order.new(item: item1, bill: bill)}
